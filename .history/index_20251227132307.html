@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ | THE HERITAGE HUB</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. THIẾT LẬP GIAO DIỆN CAO CẤP --- */
+      :root {
+        --gold: #d4af37; /* Vàng Hoàng Gia */
+        --gold-dim: #aa8a2e; /* Vàng Đồng Đậm */
+        --red: #8b0000; /* Đỏ Son (Vermilion) */
+        --navy: #0f172a; /* Xanh Đêm (Midnight Blue) */
+        --cream: #f5f2e9; /* Kem Giấy Dó */
+        --text: #2c2c2c;
+        --pattern-opacity: 0.05;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--cream);
+        color: var(--text);
+        line-height: 1.8;
+        overflow-x: hidden;
+        /* Họa tiết nền Gạch Bông Đông Dương chìm */
+        background-image: linear-gradient(
+            30deg,
+            var(--gold) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            var(--gold) 87.5%,
+            var(--gold)
+          ),
+          linear-gradient(
+            150deg,
+            var(--gold) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            var(--gold) 87.5%,
+            var(--gold)
+          ),
+          linear-gradient(
+            30deg,
+            var(--gold) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            var(--gold) 87.5%,
+            var(--gold)
+          ),
+          linear-gradient(
+            150deg,
+            var(--gold) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            var(--gold) 87.5%,
+            var(--gold)
+          ),
+          linear-gradient(
+            60deg,
+            var(--gold-dim) 25%,
+            transparent 25.5%,
+            transparent 75%,
+            var(--gold-dim) 75%,
+            var(--gold-dim)
+          ),
+          linear-gradient(
+            60deg,
+            var(--gold-dim) 25%,
+            transparent 25.5%,
+            transparent 75%,
+            var(--gold-dim) 75%,
+            var(--gold-dim)
+          );
+        background-size: 80px 140px;
+        background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+        background-blend-mode: multiply;
+      }
+      /* Tạo lớp phủ mờ đè lên họa tiết nền để không bị rối mắt */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(245, 242, 233, 0.96);
+        z-index: -1;
+      }
+
+      /* Typography */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cormorant Garamond", serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--navy);
+      }
+      .accent-font {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* --- 2. HEADER & NAVIGATION (STYLE SƠN MÀI) --- */
+      header {
+        background: linear-gradient(to right, #0f172a, #1e293b);
+        border-bottom: 3px solid var(--gold);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-decoration: none;
+      }
+      .logo-badge {
+        width: 50px;
+        height: 50px;
+        background: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: var(--navy);
+        font-size: 1.5rem;
+        border: 2px solid #fff;
+        box-shadow: 0 0 10px var(--gold);
+      }
+      .brand-text h1 {
+        color: var(--gold);
+        margin: 0;
+        line-height: 1;
+        font-size: 1.5rem;
+        text-shadow: 1px 1px 0 #000;
+      }
+      .brand-text span {
+        color: #ccc;
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+        display: block;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .nav-links a {
+        color: #e2e8f0;
+        text-decoration: none;
+        margin-left: 30px;
+        font-weight: 500;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: 0.4s;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "♦";
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        color: var(--gold);
+        transition: 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-links a:hover::after {
+        top: -20px;
+        opacity: 1;
+      }
+
+      /* --- 3. HERO SECTION (PARALLAX + KHUNG VIỀN) --- */
+      .hero {
+        height: 100vh;
+        background-image: url("https://images.unsplash.com/photo-1596627627832-75390eb3e3a7?q=80&w=2070&auto=format&fit=crop");
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.9) 100%);
+      }
+
+      /* Khung viền Hero đậm chất Á Đông */
+      .hero-frame {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        border: 1px solid rgba(212, 175, 55, 0.5);
+        padding: 60px;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(5px);
+        max-width: 900px;
+      }
+      .corner-decor {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--gold);
+        transition: 0.4s;
+      }
+      .top-left {
+        top: -5px;
+        left: -5px;
+        border-right: none;
+        border-bottom: none;
+      }
+      .top-right {
+        top: -5px;
+        right: -5px;
+        border-left: none;
+        border-bottom: none;
+      }
+      .bot-left {
+        bottom: -5px;
+        left: -5px;
+        border-right: none;
+        border-top: none;
+      }
+      .bot-right {
+        bottom: -5px;
+        right: -5px;
+        border-left: none;
+        border-top: none;
+      }
+
+      .hero-frame:hover .corner-decor {
+        width: 60px;
+        height: 60px;
+      } /* Hiệu ứng nở ra khi hover */
+
+      .hero h2 {
+        font-size: 4rem;
+        text-shadow: 0 4px 15px #000;
+        margin-bottom: 10px;
+      }
+      .hero-divider {
+        font-size: 2rem;
+        color: var(--gold);
+        margin: 10px 0;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        color: #ddd;
+        margin-bottom: 40px;
+        font-weight: 300;
+      }
+
+      .btn-gold {
+        background: linear-gradient(45deg, var(--gold-dim), var(--gold));
+        color: var(--navy);
+        padding: 12px 35px;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        border: 1px solid #fff;
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        transition: 0.3s;
+        display: inline-block;
+      }
+      .btn-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.6);
+        color: #000;
+      }
+
+      /* --- 4. SECTION DECORATION (MÂY & GỐM) --- */
+      .section-padding {
+        padding: 100px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .section-title span {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 1.5rem;
+      }
+      .section-title h2 {
+        font-size: 3rem;
+        margin-top: 5px;
+        color: var(--navy);
+      }
+      .title-ornament {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+        color: var(--red);
+      }
+      .title-ornament::before,
+      .title-ornament::after {
+        content: "";
+        width: 80px;
+        height: 2px;
+        background: var(--gold);
+        margin: 0 15px;
+      }
+      .ornament-icon {
+        font-size: 1.5rem;
+      }
+
+      /* --- 5. ABOUT CARD (HIỆU ỨNG GIẤY CŨ) --- */
+      .about-card {
+        background: #fff;
+        padding: 50px;
+        display: flex;
+        gap: 50px;
+        align-items: center;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e2e8f0;
+        position: relative;
+      }
+      .about-card::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 1px dashed var(--gold);
+        pointer-events: none;
+      }
+      .about-img img {
+        width: 100%;
+        border-radius: 2px;
+        box-shadow: 15px 15px 0 var(--navy);
+        filter: sepia(20%);
+        transition: 0.4s;
+      }
+      .about-card:hover .about-img img {
+        filter: sepia(0%);
+        transform: scale(1.02);
+      }
+
+      /* --- 6. VALUES GRID (ĐỒNG XU) --- */
+      .values-section {
+        background: var(--navy);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      /* Họa tiết nền Trống Đồng mờ */
+      .bg-drum {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 800px;
+        opacity: 0.05;
+        background: radial-gradient(circle, transparent 20%, #fff 21%, transparent 22%),
+          radial-gradient(circle, transparent 40%, #fff 41%, transparent 42%);
+        border-radius: 50%;
+        border: 2px dashed #fff;
+      }
+
+      .value-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        position: relative;
+        z-index: 2;
+      }
+      .value-item {
+        text-align: center;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: 0.3s;
+      }
+      .value-item:hover {
+        border-color: var(--gold);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .icon-circle {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 25px;
+        background: var(--navy);
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--gold);
+        box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.2);
+        transition: 0.4s;
+      }
+      .value-item:hover .icon-circle {
+        background: var(--gold);
+        color: var(--navy);
+        box-shadow: 0 0 0 10px rgba(212, 175, 55, 0.4);
+      }
+
+      /* --- 7. ZONES (CÁNH CỬA) --- */
+      .zone-wrapper {
+        display: flex;
+        gap: 15px;
+        height: 500px;
+        margin-top: 40px;
+      }
+      .zone-panel {
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50px;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+        border: 2px solid var(--cream);
+        cursor: pointer;
+      }
+      .zone-panel:hover {
+        flex: 3;
+        border-radius: 10px;
+        border-color: var(--gold);
+      }
+
+      .panel-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px;
+        background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+        color: #fff;
+        transform: translateY(100px);
+        transition: 0.4s;
+        opacity: 0;
+      }
+      .zone-panel:hover .panel-content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .vertical-text {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        color: #fff;
+        text-shadow: 0 2px 5px #000;
+        letter-spacing: 5px;
+        transition: 0.3s;
+      }
+      .zone-panel:hover .vertical-text {
+        opacity: 0;
+      }
+
+      /* --- 8. FOOTER --- */
+      footer {
+        background: #050911;
+        color: #888;
+        padding: 70px 0 20px;
+        border-top: 5px solid var(--red);
+      }
+      .footer-logo h2 {
+        color: var(--gold);
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+      .social-link {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid #333;
+        color: #fff;
+        border-radius: 50%;
+        margin-right: 10px;
+        transition: 0.3s;
+      }
+      .social-link:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--navy);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .about-card {
+          flex-direction: column;
+        }
+        .value-grid {
+          grid-template-columns: 1fr;
+        }
+        .zone-wrapper {
+          flex-direction: column;
+          height: auto;
+        }
+        .zone-panel {
+          height: 200px;
+          border-radius: 10px;
+        }
+        .hero h2 {
+          font-size: 2.5rem;
+        }
+        .vertical-text {
+          display: none;
+        }
+        .panel-content {
+          transform: translateY(0);
+          opacity: 1;
+          position: relative;
+          background: rgba(0, 0, 0, 0.6);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-inner">
+        <a href="index.html" class="logo-area">
+          <div class="logo-badge">V</div>
+          <div class="brand-text">
+            <h1>VỀ QUÁN</h1>
+            <span>THE HERITAGE HUB</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html" style="color: var(--gold)">Trang Chủ</a>
+          <a href="about.html">Câu Chuyện</a>
+          <a href="games.html">Kho Tàng Game</a>
+          <a href="menu.html">Thực Đơn</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-frame">
+        <div class="corner-decor top-left"></div>
+        <div class="corner-decor top-right"></div>
+        <div class="corner-decor bot-left"></div>
+        <div class="corner-decor bot-right"></div>
+
+        <p class="accent-font" style="color: var(--gold); font-size: 1.5rem; margin-bottom: 10px">
+          Chào mừng bạn trở về với
+        </p>
+        <h2>
+          DI SẢN SỐNG <br />
+          GIỮA LÒNG THỦ ĐỨC
+        </h2>
+
+        <div class="hero-divider">❖ ❖ ❖</div>
+
+        <p>
+          Không gian cà phê boardgame đầu tiên kết hợp <br />
+          <strong>Nghệ Thuật Thủ Công</strong> & <strong>Công Nghệ Tương Tác</strong>
+        </p>
+
+        <div style="margin-top: 30px; display: flex; gap: 20px; justify-content: center">
+          <a href="games.html" class="btn-gold">Khám Phá Game</a>
+          <a href="menu.html" class="btn-gold" style="background: transparent; color: #fff"
+            >Xem Menu</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding container">
+      <div class="about-card">
+        <div style="flex: 1">
+          <span
+            style="
+              color: var(--red);
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 2px;
+            "
+            >Về Chúng Tôi</span
+          >
+          <h2 style="font-size: 2.5rem; margin: 15px 0 25px; color: var(--navy)">
+            KHI TRUYỀN THỐNG <br />
+            CHẠM VÀO TƯƠNG LAI
+          </h2>
+          <p style="color: #555; margin-bottom: 20px; text-align: justify">
+            <b>Về Quán</b> không chỉ là một quán cà phê. Đó là nỗ lực của những người trẻ UFM nhằm
+            "hồi sinh" những bàn cờ Ô Ăn Quan, Cờ Gánh đang dần bị lãng quên.
+          </p>
+          <p style="color: #555; margin-bottom: 30px">
+            Chúng tôi tạo ra một không gian nơi bạn có thể đặt điện thoại xuống để cầm quân cờ lên,
+            nhưng cũng sử dụng chính điện thoại để quét AR và hiểu sâu hơn về lịch sử trò chơi.
+          </p>
+          <a
+            href="about.html"
+            style="
+              color: var(--gold-dim);
+              font-weight: bold;
+              border-bottom: 2px solid var(--gold);
+              text-decoration: none;
+            "
+            >Đọc câu chuyện đầy đủ ➔</a
+          >
+        </div>
+        <div class="about-img" style="flex: 1">
+          <img
+            src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?q=80&w=2069&auto=format&fit=crop"
+            alt="Không gian quán"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding values-section">
+      <div class="bg-drum"></div>
+      <div class="container">
+        <div class="section-title">
+          <span style="color: #fff">Tại sao chọn Về Quán?</span>
+          <h2 style="color: var(--gold)">GIÁ TRỊ CỐT LÕI</h2>
+          <div class="title-ornament" style="color: #fff">✦</div>
+        </div>
+
+        <div class="value-grid">
+          <div class="value-item">
+            <div class="icon-circle"><i class="fa-solid fa-chess-rook"></i></div>
+            <h3 style="color: #fff; margin-bottom: 15px">DI SẢN THỦ CÔNG</h3>
+            <p style="color: #ccc; font-size: 0.95rem">
+              20+ bộ Boardgame được chế tác từ gỗ hương, đá quý và gốm Bát Tràng, thay thế hoàn toàn
+              nhựa công nghiệp.
+            </p>
+          </div>
+          <div class="value-item">
+            <div class="icon-circle"><i class="fa-solid fa-qrcode"></i></div>
+            <h3 style="color: #fff; margin-bottom: 15px">TRẢI NGHIỆM SỐ</h3>
+            <p style="color: #ccc; font-size: 0.95rem">
+              Quét mã QR để xem luật chơi trong 60s. Công nghệ AR tái hiện lịch sử hào hùng của từng
+              trò chơi.
+            </p>
+          </div>
+          <div class="value-item">
+            <div class="icon-circle"><i class="fa-solid fa-leaf"></i></div>
+            <h3 style="color: #fff; margin-bottom: 15px">HƯƠNG VỊ VIỆT</h3>
+            <p style="color: #ccc; font-size: 0.95rem">
+              Menu nước uống sử dụng nông sản Việt: Cafe Cầu Đất, Trà Sen Tây Hồ, Mứt Gừng Huế.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding container">
+      <div class="section-title">
+        <span>Khám phá không gian</span>
+        <h2>MÔ HÌNH 3 TRẢI NGHIỆM</h2>
+        <div class="title-ornament"><i class="fa-solid fa-fan ornament-icon"></i></div>
+      </div>
+
+      <div class="zone-wrapper">
+        <div
+          class="zone-panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop');
+          "
+        >
+          <div class="vertical-text">ZEN ZONE</div>
+          <div class="panel-content">
+            <h3 style="color: var(--gold)">THE ZEN ZONE (TĨNH)</h3>
+            <p>
+              Không gian thiền định, yên tĩnh tuyệt đối. Dành cho các cờ thủ Cờ Tướng, Cờ Vây và
+              người làm việc.
+            </p>
+          </div>
+        </div>
+        <div
+          class="zone-panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop');
+          "
+        >
+          <div class="vertical-text">BATTLE ZONE</div>
+          <div class="panel-content">
+            <h3 style="color: var(--red)">THE BATTLE ZONE (ĐỘNG)</h3>
+            <p>
+              Không gian mở, sôi động. Nơi diễn ra các trận Ô Ăn Quan, Bầu Cua nảy lửa của nhóm bạn.
+            </p>
+          </div>
+        </div>
+        <div
+          class="zone-panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop');
+          "
+        >
+          <div class="vertical-text">HERITAGE LAB</div>
+          <div class="panel-content">
+            <h3 style="color: #fff">HERITAGE LAB (SÁNG)</h3>
+            <p>Khu vực Workshop thủ công và trải nghiệm công nghệ AR/VR tìm hiểu văn hóa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px">
+          <div class="footer-logo">
+            <h2>VỀ QUÁN</h2>
+            <p style="margin-bottom: 20px">
+              Dự án khởi nghiệp sinh viên UFM với sứ mệnh bảo tồn văn hóa dân gian thông qua mô hình
+              Boardgame Cafe hiện đại.
+            </p>
+            <div style="margin-top: 20px">
+              <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+              <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          <div>
+            <h4 style="color: #fff; margin-bottom: 20px">LIÊN HỆ</h4>
+            <p>
+              <i
+                class="fa-solid fa-location-dot"
+                style="color: var(--gold); margin-right: 10px"
+              ></i>
+              Làng Đại Học, TP. Thủ Đức
+            </p>
+            <p>
+              <i class="fa-solid fa-phone" style="color: var(--gold); margin-right: 10px"></i>
+              0909.HERITAGE
+            </p>
+            <p>
+              <i class="fa-solid fa-envelope" style="color: var(--gold); margin-right: 10px"></i>
+              hello@vequan.vn
+            </p>
+          </div>
+          <div>
+            <h4 style="color: #fff; margin-bottom: 20px">GIỜ MỞ CỬA</h4>
+            <p>Thứ 2 - Thứ 6: <span style="color: #fff">07:00 - 22:00</span></p>
+            <p>Thứ 7 - CN: <span style="color: #fff">08:00 - 23:00</span></p>
+            <p style="color: var(--red); font-weight: bold; margin-top: 10px">*Mở xuyên Tết</p>
+          </div>
+        </div>
+
+        <div
+          style="
+            text-align: center;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.85rem;
+          "
+        >
+          © 2025 THE HERITAGE HUB. Designed with ❤️ by UFM Students.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE HERITAGE HUB | VỀ QUÁN - Nơi Cội Nguồn Gặp Gỡ Tương Lai</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- CSS VARIABLES & GLOBAL STYLES --- */
+      :root {
+        --ancient-gold: #d4af37; /* Vàng đồng sang trọng */
+        --deep-red: #800000; /* Đỏ trầm cổ điển */
+        --jade-green: #00a86b; /* Xanh ngọc bích */
+        --modern-navy: #0a192f; /* Xanh navy hiện đại */
+        --bg-cream: #fdfbf7; /* Nền kem sạch sẽ */
+        --text-dark: #333333;
+        --text-light: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif; /* Font hiện đại cho nội dung */
+        background-color: var(--bg-cream);
+        color: var(--text-dark);
+        line-height: 1.6;
+        /* Thêm họa tiết nền trống đồng mờ rất nhẹ */
+        background-image: url("https://thumbs.dreamstime.com/b/dong-son-drum-bronze-pattern-vietnam-culture-vector-illustration-eps-97531853.jpg"); /* Ảnh mẫu họa tiết */
+        background-blend-mode: soft-light;
+        background-size: 600px;
+        background-attachment: fixed;
+        opacity: 0.98;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cinzel", serif; /* Font cổ điển cho tiêu đề */
+        color: var(--modern-navy);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .highlight-gold {
+        color: var(--ancient-gold);
+      }
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(45deg, var(--ancient-gold), var(--deep-red));
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        border: 1px solid var(--ancient-gold);
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px -10px rgba(212, 175, 55, 0.5);
+      }
+
+      /* --- HEADER & NAVIGATION --- */
+      header {
+        background-color: rgba(10, 25, 47, 0.95); /* Navy nền tối */
+        padding: 15px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 3px solid var(--ancient-gold);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        color: var(--ancient-gold);
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      /* Giả lập Logo từ yêu cầu trước */
+      .logo-img-sim {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        background: url("image_8.png") no-repeat center center / contain; /* Sử dụng logo bạn đã chọn */
+        /* Nếu chưa có file ảnh thật, dùng placeholder này:
+            background: conic-gradient(var(--ancient-gold), var(--modern-navy));
+            border-radius: 50%; */
+        border: 2px solid var(--ancient-gold);
+      }
+
+      .nav-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        margin-left: 30px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+        text-transform: uppercase;
+      }
+
+      .nav-links a:hover {
+        color: var(--ancient-gold);
+      }
+
+      /* --- HERO SECTION --- */
+      .hero {
+        height: 100vh;
+        /* Sử dụng ảnh nền không gian quán cafe kết hợp cổ điển hiện đại */
+        background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(128, 0, 0, 0.4)),
+          url("https://images.unsplash.com/photo-1579370933709-0f4126507989?q=80&w=2070&auto=format&fit=crop")
+            no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: var(--text-light);
+        padding-top: 80px;
+        position: relative;
+      }
+
+      /* Tạo hiệu ứng đường viền hiện đại */
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--ancient-gold),
+          var(--ancient-gold) 10px,
+          transparent 10px,
+          transparent 20px
+        );
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        color: var(--text-light);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-tagline {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+        font-weight: 300;
+        font-style: italic;
+        color: var(--ancient-gold);
+      }
+
+      /* --- ABOUT SECTION (The Fusion Vision) --- */
+      .about {
+        padding: 80px 0;
+        text-align: center;
+        background-color: var(--bg-cream);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 60%;
+        height: 3px;
+        background-color: var(--ancient-gold);
+        margin: 15px auto 0;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .about-card {
+        padding: 30px;
+        background: #fff;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Thêm họa tiết góc đậm chất Việt Nam */
+      .about-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        border-top: 3px solid var(--deep-red);
+        border-left: 3px solid var(--deep-red);
+      }
+
+      .about-card:hover {
+        transform: translateY(-10px);
+      }
+      .about-icon {
+        font-size: 3rem;
+        color: var(--jade-green);
+        margin-bottom: 20px;
+      }
+      .about-card h3 {
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+      }
+
+      /* --- GAMES SECTION (The Core) --- */
+      .games {
+        padding: 80px 0;
+        background-color: var(--modern-navy);
+        color: var(--text-light);
+      }
+
+      .games .section-title {
+        color: var(--ancient-gold);
+      }
+
+      .game-showcase {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .game-item {
+        flex-basis: calc(33.333% - 30px);
+        min-width: 300px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--ancient-gold);
+        position: relative;
+      }
+
+      .game-img {
+        height: 250px;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        /* Hiệu ứng overlay hiện đại */
+        box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.3);
+      }
+
+      /* Placeholder ảnh game - Cần thay bằng ảnh thật của dự án */
+      .game-1 .game-img {
+        background-image: url("https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=2070&auto=format&fit=crop"); /* Ảnh minh họa cờ/boardgame */
+      }
+      .game-2 .game-img {
+        background-image: url("https://i.pinimg.com/736x/c5/e3/c9/c5e3c9b5590725080072880278778910.jpg"); /* Ảnh minh họa Ô ăn quan */
+      }
+      .game-3 .game-img {
+        background-image: url("https://images.unsplash.com/photo-1611371805429-c05981e63d60?q=80&w=2071&auto=format&fit=crop"); /* Ảnh minh họa khác */
+      }
+
+      .game-info {
+        padding: 25px;
+        text-align: center;
+      }
+      .game-info h3 {
+        color: var(--ancient-gold);
+        margin-bottom: 10px;
+      }
+      .game-tech {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 5px 15px;
+        background: rgba(0, 168, 107, 0.2);
+        color: var(--jade-green);
+        font-size: 0.8rem;
+        border-radius: 20px;
+        border: 1px solid var(--jade-green);
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        background-color: #050d1a;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 60px 0 30px;
+        text-align: center;
+        border-top: 5px solid var(--deep-red);
+      }
+
+      .footer-content h2 {
+        color: var(--ancient-gold);
+        margin-bottom: 20px;
+      }
+      .contact-info p {
+        margin-bottom: 10px;
+      }
+      .highlight-jade {
+        color: var(--jade-green);
+        font-weight: bold;
+      }
+      .copyright {
+        margin-top: 40px;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">
+            <div class="logo-img-sim"></div>
+            THE HERITAGE HUB
+          </div>
+          <div class="nav-links">
+            <a href="#about">Về Chúng Tôi</a>
+            <a href="#games">Trò Chơi Di Sản</a>
+            <a href="#experience">Trải Nghiệm</a>
+            <a href="#contact" class="highlight-gold">Đặt Bàn Ngay</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-content">
+        <h1>
+          THE HERITAGE HUB <br />
+          <span class="highlight-gold">VỀ QUÁN</span>
+        </h1>
+        <p class="hero-tagline">"Uống tách trà, Chạm ký ức - Nơi cội nguồn giao thoa công nghệ"</p>
+        <a href="#about" class="btn">Khám Phá Không Gian Neo-Traditional</a>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">Giao Thoa Cổ Xưa & Hiện Đại</h2>
+        <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem">
+          Chúng tôi không chỉ là một quán cà phê. <b>The Heritage Hub</b> tại Thủ Đức là một thánh
+          địa văn hóa, nơi kiến trúc Đông Dương (Indochine) gặp gỡ công nghệ số. Chúng tôi tái sinh
+          những trò chơi dân gian Việt Nam bằng chất liệu thủ công tinh xảo và sự hỗ trợ của công
+          nghệ 4.0, giúp bạn "cai nghiện kỹ thuật số" và kết nối thực sự.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="about-icon">⛩️</div>
+            <h3>Không Gian Di Sản</h3>
+            <p>
+              Kiến trúc Neo-Traditional sử dụng tre, gỗ, gốm sứ kết hợp ánh sáng hiện đại, tạo nên
+              những góc check-in đậm chất văn hóa.
+            </p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">🎲</div>
+            <h3>Trò Chơi Số Hóa</h3>
+            <p>
+              20+ bộ Boardgame dân gian được chế tác thủ công cao cấp. Quên luật chơi? Chỉ cần quét
+              mã QR để xem hướng dẫn video 60s.
+            </p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">🤝</div>
+            <h3>Kết Nối Thực</h3>
+            <p>
+              Thoát khỏi màn hình điện thoại. "Culture Guides" (Sứ giả văn hóa) của chúng tôi sẽ dẫn
+              dắt bạn vào những cuộc vui không khoảng cách.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="games" class="games">
+      <div class="container">
+        <h2 class="section-title" style="text-align: center">Bộ Sưu Tập Trò Chơi Di Sản</h2>
+        <p style="text-align: center; margin-bottom: 50px; color: rgba(255, 255, 255, 0.8)">
+          Những trò chơi "vỉa hè" được nâng tầm thành tác phẩm nghệ thuật với sự hỗ trợ của công
+          nghệ.
+        </p>
+
+        <div class="game-showcase">
+          <div class="game-item game-2">
+            <div class="game-img"></div>
+            <div class="game-info">
+              <h3>Ô Ăn Quan (Mandarin Square)</h3>
+              <p>
+                Phiên bản cao cấp với bàn gỗ hương và quân đá bán quý. Trải nghiệm chiến thuật cổ
+                xưa trong diện mạo hoàng gia.
+              </p>
+              <span class="game-tech">Hỗ trợ QR Code Luật chơi</span>
+            </div>
+          </div>
+          <div class="game-item game-1">
+            <div class="game-img"></div>
+            <div class="game-info">
+              <h3>Cờ Gánh & Cờ Vây</h3>
+              <p>
+                Không gian thiền định với bàn cờ chế tác từ gốm Bát Tràng. Nơi trí tuệ và sự tĩnh
+                lặng lên ngôi.
+              </p>
+              <span class="game-tech">Giải đấu Gamification</span>
+            </div>
+          </div>
+          <div class="game-item game-3">
+            <div class="game-img"></div>
+            <div class="game-info">
+              <h3>Bầu Cua Tôm Cá Nghệ Thuật</h3>
+              <p>
+                Tái hiện không khí lễ hội với bộ dụng cụ được vẽ tay thủ công. Vui vẻ, may mắn và
+                đậm sắc màu dân gian.
+              </p>
+              <span class="game-tech">Tương tác AR (Sắp ra mắt)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="container footer-content">
+        <h2>THE HERITAGE HUB</h2>
+        <div class="contact-info">
+          <p>📍 Địa chỉ: <span class="highlight-jade">Làng Đại Học, TP. Thủ Đức, TP.HCM</span></p>
+          <p>☕ Giờ mở cửa: 07:00 - 23:00 (Hàng ngày)</p>
+          <p>📞 Hotline đặt bàn & Sự kiện: <span class="highlight-gold">0909.HERITAGE</span></p>
+          <p>📧 Email: hello@vequan.vn</p>
+        </div>
+        <div style="margin-top: 30px">
+          <a href="#" class="btn">Nhận Ưu Đãi Khai Trương</a>
+        </div>
+        <p class="copyright">
+          © 2025 THE HERITAGE HUB - Dự án khởi nghiệp sinh viên UFM. Bảo lưu mọi quyền.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

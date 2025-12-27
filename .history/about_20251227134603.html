@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Câu Chuyện | THE HERITAGE HUB</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. CORE STYLES (ĐỒNG BỘ VỚI INDEX) --- */
+      :root {
+        --gold: #d4af37;
+        --gold-shine: #f9e076;
+        --gold-dim: #aa8a2e;
+        --red: #8b0000;
+        --navy: #0f172a;
+        --cream: #f5f2e9;
+        --text: #2c2c2c;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--cream);
+        color: var(--text);
+        line-height: 1.8;
+        overflow-x: hidden;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cormorant Garamond", serif;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--navy);
+      }
+      .serif-italic {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .section-padding {
+        padding: 100px 0;
+      }
+
+      /* Navigation (Giữ nguyên) */
+      header {
+        background: linear-gradient(to right, #0f172a, #1e293b);
+        border-bottom: 3px solid var(--gold);
+        padding: 12px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      }
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo-area {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .logo-badge {
+        width: 45px;
+        height: 45px;
+        background: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: var(--navy);
+        font-size: 1.5rem;
+        border: 2px solid #fff;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+      }
+      .brand-text h1 {
+        color: var(--gold);
+        margin: 0;
+        line-height: 1;
+        font-size: 1.4rem;
+      }
+      .brand-text span {
+        color: #ccc;
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        display: block;
+        font-family: "Montserrat", sans-serif;
+      }
+      .nav-links a {
+        color: #e2e8f0;
+        text-decoration: none;
+        margin-left: 25px;
+        font-weight: 500;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        transition: 0.3s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--gold);
+      }
+      .btn-nav {
+        border: 1px solid var(--gold);
+        padding: 8px 20px;
+        border-radius: 2px;
+        color: var(--gold) !important;
+      }
+      .btn-nav:hover {
+        background: var(--gold);
+        color: var(--navy) !important;
+      }
+
+      /* --- 2. ABOUT HERO --- */
+      .page-hero {
+        height: 60vh;
+        background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)),
+          url("https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?q=80&w=2069&auto=format&fit=crop");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .page-hero h2 {
+        font-size: 4rem;
+        color: #fff;
+        text-shadow: 0 5px 20px #000;
+        margin-bottom: 15px;
+      }
+      .breadcrumb {
+        color: var(--gold);
+        font-family: "Montserrat";
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      /* --- 3. STORY SECTIONS (ZIGZAG) --- */
+      .story-block {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        margin-bottom: 100px;
+      }
+      .story-block.reverse {
+        flex-direction: row-reverse;
+      }
+      .story-img {
+        flex: 1;
+        position: relative;
+      }
+      .story-img img {
+        width: 100%;
+        border-radius: 4px;
+        box-shadow: 20px 20px 0 var(--navy);
+        filter: sepia(10%);
+        transition: 0.5s;
+      }
+      .story-img:hover img {
+        filter: sepia(0);
+        transform: translateY(-5px);
+      }
+
+      /* Khung viền ảnh trang trí */
+      .story-img::before {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        width: 100px;
+        height: 100px;
+        border-top: 3px solid var(--gold);
+        border-left: 3px solid var(--gold);
+        z-index: 1;
+      }
+
+      .story-text {
+        flex: 1;
+      }
+      .story-text h3 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--navy);
+        position: relative;
+        display: inline-block;
+      }
+      .story-text h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60%;
+        height: 3px;
+        background: var(--gold);
+      }
+      .story-text p {
+        color: #555;
+        margin-bottom: 20px;
+        text-align: justify;
+        font-size: 1.05rem;
+      }
+      .highlight-text {
+        color: var(--red);
+        font-weight: 600;
+        font-family: "Cormorant Garamond";
+        font-size: 1.3rem;
+        font-style: italic;
+      }
+
+      /* --- 4. PHILOSOPHY GRID --- */
+      .philosophy-section {
+        background: var(--navy);
+        color: #fff;
+        padding: 100px 0;
+        text-align: center;
+      }
+      .phil-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 50px;
+      }
+      .phil-card {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 40px 20px;
+        transition: 0.4s;
+        position: relative;
+        overflow: hidden;
+      }
+      .phil-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--gold);
+      }
+      .phil-num {
+        font-size: 4rem;
+        color: rgba(255, 255, 255, 0.05);
+        font-weight: 900;
+        position: absolute;
+        top: 0;
+        right: 20px;
+      }
+      .phil-icon {
+        font-size: 2.5rem;
+        color: var(--gold);
+        margin-bottom: 20px;
+      }
+
+      /* --- 5. TIMELINE --- */
+      .timeline-section {
+        background: #fff;
+        position: relative;
+      }
+      .timeline-line {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--gold);
+        transform: translateX(-50%);
+      }
+      .timeline-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 60px;
+        position: relative;
+      }
+      .timeline-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+      .timeline-dot {
+        position: absolute;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        background: var(--red);
+        border: 4px solid #fff;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        box-shadow: 0 0 0 3px var(--gold);
+      }
+      .timeline-content {
+        width: 45%;
+        padding: 30px;
+        background: var(--cream);
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        position: relative;
+      }
+      .timeline-content h4 {
+        color: var(--red);
+        font-size: 1.2rem;
+      }
+      .timeline-date {
+        font-family: "Cormorant Garamond";
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: var(--navy);
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      /* --- 6. TEAM SECTION --- */
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+      }
+      .team-card {
+        text-align: center;
+        background: #fff;
+        padding-bottom: 20px;
+        border: 1px solid #eee;
+        transition: 0.3s;
+      }
+      .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-color: var(--gold);
+      }
+      .team-img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        margin-bottom: 20px;
+        filter: grayscale(100%);
+        transition: 0.4s;
+      }
+      .team-card:hover .team-img {
+        filter: grayscale(0%);
+      }
+      .team-name {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 5px;
+      }
+      .team-role {
+        color: var(--gold-dim);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* --- 7. FOOTER --- */
+      footer {
+        background: #0a0f1c;
+        color: #888;
+        padding: 80px 0 20px;
+        border-top: 5px solid var(--red);
+      }
+      .footer-col h4 {
+        color: #fff;
+        margin-bottom: 25px;
+        font-size: 1.2rem;
+        border-left: 3px solid var(--gold);
+        padding-left: 15px;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col li {
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+      }
+      .footer-col a {
+        color: #888;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .footer-col a:hover {
+        color: var(--gold);
+      }
+
+      @media (max-width: 768px) {
+        .story-block,
+        .story-block.reverse {
+          flex-direction: column;
+          gap: 30px;
+        }
+        .phil-grid,
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .timeline-line {
+          left: 20px;
+        }
+        .timeline-item,
+        .timeline-item:nth-child(even) {
+          flex-direction: column;
+          align-items: flex-start;
+          padding-left: 50px;
+        }
+        .timeline-dot {
+          left: 20px;
+        }
+        .timeline-content {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-inner">
+        <a href="index.html" class="logo-area">
+          <div class="logo-badge">V</div>
+          <div class="brand-text">
+            <h1>VỀ QUÁN</h1>
+            <span>THE HERITAGE HUB</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang Chủ</a>
+          <a href="about.html" class="active">Câu Chuyện</a>
+          <a href="games.html">Kho Tàng Game</a>
+          <a href="menu.html">Thực Đơn</a>
+          <a href="#contact" class="btn-nav">Liên Hệ</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="page-hero">
+      <div class="breadcrumb">Về Chúng Tôi</div>
+      <h2>HÀNH TRÌNH TÌM LẠI KÝ ỨC</h2>
+      <div style="width: 100px; height: 3px; background: var(--gold); margin-top: 20px"></div>
+    </section>
+
+    <section class="section-padding container">
+      <div class="story-block">
+        <div class="story-text">
+          <span class="serif-italic" style="color: var(--gold); font-size: 1.3rem">Chương 1</span>
+          <h3>
+            KHỞI NGUỒN TỪ <br />
+            GIẢNG ĐƯỜNG UFM
+          </h3>
+          <p>
+            Câu chuyện của <b>Về Quán</b> không bắt đầu trong phòng họp sang trọng, mà bắt đầu từ
+            những buổi thảo luận sôi nổi của nhóm sinh viên Trường Đại học Tài chính - Marketing
+            (UFM).
+          </p>
+          <p>
+            Chúng tôi nhận thấy một nghịch lý: Trong khi công nghệ giúp chúng ta kết nối với cả thế
+            giới, nó lại làm ta xa cách người ngồi ngay đối diện. Những quán cà phê ngày nay đầy ắp
+            người, nhưng ai cũng cúi mặt vào điện thoại.
+          </p>
+          <p class="highlight-text">
+            "Tại sao không dùng chính những trò chơi dân gian để kéo mọi người lại gần nhau hơn?"
+          </p>
+        </div>
+        <div class="story-img">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
+            alt="Nhóm sinh viên"
+          />
+        </div>
+      </div>
+
+      <div class="story-block reverse">
+        <div class="story-text">
+          <span class="serif-italic" style="color: var(--gold); font-size: 1.3rem">Chương 2</span>
+          <h3>
+            SỨ MỆNH <br />
+            "DI SẢN SỐNG"
+          </h3>
+          <p>
+            Chúng tôi không muốn tạo ra một "bảo tàng" nơi những bàn cờ nằm im trong tủ kính. Tại Về
+            Quán, di sản phải <b>SỐNG</b>.
+          </p>
+          <p>
+            Sứ mệnh của Heritage Hub là xây dựng một cây cầu nối giữa quá khứ và hiện tại. Chúng tôi
+            khoác lên những trò chơi cũ một diện mạo mới: Sang trọng hơn, tiện lợi hơn và công nghệ
+            hơn. Để khi người trẻ cầm quân cờ lên, họ không thấy sự cũ kỹ, mà thấy niềm tự hào.
+          </p>
+          <ul style="list-style: none; margin-top: 20px">
+            <li style="margin-bottom: 10px">
+              <i class="fa-solid fa-check" style="color: var(--gold); margin-right: 10px"></i> Bảo
+              tồn giá trị văn hóa phi vật thể.
+            </li>
+            <li style="margin-bottom: 10px">
+              <i class="fa-solid fa-check" style="color: var(--gold); margin-right: 10px"></i> Tạo
+              không gian giải trí lành mạnh (Detox Digital).
+            </li>
+            <li>
+              <i class="fa-solid fa-check" style="color: var(--gold); margin-right: 10px"></i> Lan
+              tỏa bản sắc Việt ra thế giới.
+            </li>
+          </ul>
+        </div>
+        <div class="story-img">
+          <img
+            src="https://images.unsplash.com/photo-1596627627832-75390eb3e3a7?q=80&w=2070&auto=format&fit=crop"
+            alt="Bàn cờ Ô Ăn Quan"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="philosophy-section">
+      <div class="container">
+        <h2 style="color: var(--gold)">TRIẾT LÝ 3C</h2>
+        <p style="color: #ccc; max-width: 600px; margin: 0 auto">
+          Kim chỉ nam cho mọi hoạt động tại The Heritage Hub
+        </p>
+
+        <div class="phil-grid">
+          <div class="phil-card">
+            <div class="phil-num">01</div>
+            <i class="fa-solid fa-hand-holding-heart phil-icon"></i>
+            <h3>CULTURE (VĂN HÓA)</h3>
+            <p style="color: #bbb">
+              Tôn trọng nguyên bản. Mỗi trò chơi đều được nghiên cứu kỹ lưỡng về luật chơi gốc và
+              lịch sử hình thành trước khi đưa vào phục vụ.
+            </p>
+          </div>
+          <div class="phil-card">
+            <div class="phil-num">02</div>
+            <i class="fa-solid fa-link phil-icon"></i>
+            <h3>CONNECTION (KẾT NỐI)</h3>
+            <p style="color: #bbb">
+              Không gian được thiết kế để khuyến khích tương tác. Bàn ghế được sắp xếp để mọi người
+              dễ dàng đối thoại và tranh tài.
+            </p>
+          </div>
+          <div class="phil-card">
+            <div class="phil-num">03</div>
+            <i class="fa-solid fa-wand-magic-sparkles phil-icon"></i>
+            <h3>CREATIVITY (SÁNG TẠO)</h3>
+            <p style="color: #bbb">
+              Ứng dụng công nghệ (AR, QR Code) và thiết kế hiện đại (Neo-Traditional) để làm mới
+              những giá trị xưa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding timeline-section">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 60px">DÒNG CHẢY THỜI GIAN</h2>
+
+        <div style="position: relative">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Tháng 10/2024</span>
+              <h4>HÌNH THÀNH Ý TƯỞNG</h4>
+              <p>
+                Nhóm sinh viên UFM phác thảo ý tưởng về mô hình Boardgame Cafe dân gian đầu tiên tại
+                TP.HCM trong khuôn khổ môn học Khởi nghiệp.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Tháng 12/2024</span>
+              <h4>NGHIÊN CỨU & CHẾ TÁC</h4>
+              <p>
+                Hợp tác với các nghệ nhân làng nghề để thiết kế 20 bộ game thủ công độc quyền. Xây
+                dựng App hướng dẫn luật chơi.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Tháng 02/2025</span>
+              <h4>XÂY DỰNG KHÔNG GIAN</h4>
+              <p>
+                Thi công cửa hàng đầu tiên tại Làng Đại Học Thủ Đức với phong cách Indochine kết hợp
+                công nghệ.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Tháng 06/2025</span>
+              <h4>GRAND OPENING</h4>
+              <p>
+                Chính thức ra mắt thương hiệu VỀ QUÁN - The Heritage Hub. Chào đón 1000 lượt khách
+                đầu tiên.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding container">
+      <div style="text-align: center; margin-bottom: 50px">
+        <span class="serif-italic" style="color: var(--gold); font-size: 1.3rem"
+          >Những người kể chuyện</span
+        >
+        <h2>ĐỘI NGŨ SÁNG LẬP</h2>
+        <div style="width: 60px; height: 2px; background: var(--red); margin: 20px auto"></div>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <img
+            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop"
+            class="team-img"
+            alt="Founder"
+          />
+          <div class="team-name">Nguyễn Văn A</div>
+          <span class="team-role">Co-Founder / CEO</span>
+        </div>
+        <div class="team-card">
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop"
+            class="team-img"
+            alt="Founder"
+          />
+          <div class="team-name">Trần Thị B</div>
+          <span class="team-role">Head of Marketing</span>
+        </div>
+        <div class="team-card">
+          <img
+            src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887&auto=format&fit=crop"
+            class="team-img"
+            alt="Founder"
+          />
+          <div class="team-name">Lê Văn C</div>
+          <span class="team-role">Product Manager</span>
+        </div>
+        <div class="team-card">
+          <img
+            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
+            class="team-img"
+            alt="Founder"
+          />
+          <div class="team-name">Phạm Thị D</div>
+          <span class="team-role">Operation Manager</span>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="container">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+          "
+        >
+          <div class="footer-col">
+            <h2 style="color: var(--gold); font-family: 'Cormorant Garamond'; margin-bottom: 20px">
+              THE HERITAGE HUB
+            </h2>
+            <p>
+              Dự án khởi nghiệp sinh viên UFM. Nơi lưu giữ và lan tỏa giá trị văn hóa Việt qua lăng
+              kính hiện đại.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>THÀNH VIÊN</h4>
+            <ul>
+              <li><a href="#">Đăng ký Membership</a></li>
+              <li><a href="#">Quyền lợi hạng Gold</a></li>
+              <li><a href="#">Lịch giải đấu tuần</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>LIÊN HỆ</h4>
+            <ul>
+              <li>
+                <i class="fa-solid fa-location-dot" style="color: var(--gold); width: 20px"></i> Sài
+                Gòn, Việt Nam
+              </li>
+              <li>
+                <i class="fa-solid fa-phone" style="color: var(--gold); width: 20px"></i>
+                0909.HERITAGE
+              </li>
+              <li>
+                <i class="fa-solid fa-envelope" style="color: var(--gold); width: 20px"></i>
+                hello@vequan.vn
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          style="
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.85rem;
+          "
+        >
+          © 2025 THE HERITAGE HUB. Designed with ❤️ by UFM Students.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

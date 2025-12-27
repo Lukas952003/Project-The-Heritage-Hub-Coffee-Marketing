@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE HERITAGE HUB | Thư Viện Di Sản Số - Thủ Đức</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. CORE VARIABLES --- */
+      :root {
+        --gold: #c5a059; /* Vàng đồng nhám */
+        --gold-shine: #f4e4bc; /* Vàng sáng */
+        --red: #8a1c1c; /* Đỏ sơn mài */
+        --jade: #006b54; /* Xanh ngọc lục bảo */
+        --navy: #0f172a; /* Xanh đen hiện đại */
+        --paper: #f2f0e9; /* Màu giấy dó */
+        --dark-overlay: rgba(15, 23, 42, 0.95);
+      }
+
+      /* --- 2. GLOBAL STYLES --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--paper);
+        color: var(--navy);
+        /* Họa tiết nền chìm gốm sứ */
+        background-image: radial-gradient(var(--gold) 0.5px, transparent 0.5px);
+        background-size: 20px 20px;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Cinzel", serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .text-gold {
+        color: var(--gold);
+      }
+      .text-red {
+        color: var(--red);
+      }
+
+      /* --- 3. HEADER --- */
+      header {
+        background: var(--navy);
+        border-bottom: 3px solid var(--gold);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-decoration: none;
+      }
+      /* Class chứa Logo của bạn */
+      .brand-logo {
+        height: 55px;
+        width: auto;
+        filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.5));
+      }
+      .brand-name {
+        color: var(--gold);
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .brand-name span {
+        font-size: 0.8rem;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 3px;
+        display: block;
+        margin-top: 5px;
+      }
+
+      .nav-menu a {
+        color: #ccc;
+        text-decoration: none;
+        margin-left: 30px;
+        font-weight: 500;
+        transition: 0.3s;
+        position: relative;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+      }
+      .nav-menu a:hover {
+        color: var(--gold);
+      }
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        transition: 0.3s;
+      }
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+
+      /* --- 4. HERO SECTION --- */
+      .hero {
+        height: 60vh;
+        background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(138, 28, 28, 0.3)),
+          url("https://images.unsplash.com/photo-1528360983277-13d9b152c6d4?q=80&w=2070&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .hero-text h1 {
+        font-size: 4rem;
+        color: #fff;
+        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+      }
+      .hero-text p {
+        color: var(--gold-shine);
+        font-size: 1.5rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+
+      /* --- 5. GAME LIBRARY (20 ITEMS GRID) --- */
+      .library-section {
+        padding: 80px 0;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .section-header h2 {
+        font-size: 2.5rem;
+        color: var(--navy);
+        margin-bottom: 10px;
+      }
+      .divider {
+        height: 2px;
+        width: 100px;
+        background: var(--gold);
+        margin: 0 auto 20px;
+        position: relative;
+      }
+      .divider::after {
+        content: "❖";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--paper);
+        padding: 0 10px;
+        color: var(--gold);
+      }
+
+      /* GRID SYSTEM */
+      .game-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Tự động chia cột */
+        gap: 30px;
+      }
+
+      /* GAME CARD DESIGN */
+      .game-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Hiệu ứng viền góc cổ điển */
+      .game-card::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 1px solid transparent;
+        transition: 0.4s;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .game-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        border-color: var(--gold);
+      }
+      .game-card:hover::before {
+        border-color: var(--gold);
+      }
+
+      .game-thumb {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        transition: 0.4s;
+        filter: sepia(20%);
+      }
+      .game-card:hover .game-thumb {
+        filter: sepia(0%);
+        transform: scale(1.1);
+      }
+      .thumb-wrapper {
+        overflow: hidden;
+        position: relative;
+      }
+
+      .game-info {
+        padding: 20px;
+        text-align: center;
+        background: #fff;
+        position: relative;
+        z-index: 3;
+      }
+      .game-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 5px;
+      }
+      .game-cat {
+        font-size: 0.8rem;
+        color: var(--red);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .btn-view {
+        font-size: 0.8rem;
+        padding: 8px 20px;
+        border: 1px solid var(--navy);
+        background: transparent;
+        color: var(--navy);
+        text-transform: uppercase;
+        font-weight: 600;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      .game-card:hover .btn-view {
+        background: var(--navy);
+        color: var(--gold);
+        border-color: var(--navy);
+      }
+
+      /* --- 6. MODAL (POPUP) DESIGN --- */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 2000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+        backdrop-filter: blur(5px);
+      }
+      .modal-overlay.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .modal-content {
+        background: var(--paper);
+        width: 90%;
+        max-width: 900px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 0 50px rgba(197, 160, 89, 0.3);
+        position: relative;
+        transform: translateY(50px);
+        transition: transform 0.4s;
+        border: 2px solid var(--gold);
+      }
+      .modal-overlay.active .modal-content {
+        transform: translateY(0);
+      }
+
+      .modal-img {
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        min-height: 400px;
+      }
+      .modal-details {
+        padding: 40px;
+        position: relative;
+        overflow-y: auto;
+        max-height: 90vh;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 2rem;
+        color: var(--navy);
+        cursor: pointer;
+        transition: 0.3s;
+        z-index: 10;
+      }
+      .close-btn:hover {
+        color: var(--red);
+        transform: rotate(90deg);
+      }
+
+      .modal-title {
+        font-size: 2rem;
+        color: var(--navy);
+        border-bottom: 2px solid var(--gold);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      .modal-desc {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 30px;
+        line-height: 1.8;
+      }
+
+      .qr-section {
+        background: #fff;
+        padding: 20px;
+        border: 1px dashed var(--navy);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        border-radius: 8px;
+      }
+      .qr-code {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+      }
+      .qr-text h4 {
+        margin-bottom: 5px;
+        color: var(--red);
+      }
+      .qr-text p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .modal-content {
+          grid-template-columns: 1fr;
+          max-width: 95%;
+        }
+        .modal-img {
+          height: 200px;
+        }
+        .hero-text h1 {
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-wrapper">
+        <a href="#" class="logo-box">
+          <img
+            src="https://via.placeholder.com/100x100.png?text=LOGO"
+            alt="Heritage Logo"
+            class="brand-logo"
+          />
+          <div class="brand-name">THE HERITAGE HUB<br /><span>THỦ ĐỨC</span></div>
+        </a>
+        <nav class="nav-menu">
+          <a href="#">Trang Chủ</a>
+          <a href="#games">Kho Tàng Game</a>
+          <a href="#community">Cộng Đồng</a>
+          <a
+            href="#map"
+            style="border: 1px solid var(--gold); padding: 8px 20px; border-radius: 2px"
+            >Tìm Đường</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Di Sản Sống <br /><span class="text-gold">Giữa Lòng Công Nghệ</span></h1>
+        <p>20+ Trò Chơi Dân Gian - 1 Điểm Đến Duy Nhất</p>
+      </div>
+    </section>
+
+    <section id="games" class="library-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Bộ Sưu Tập Di Sản</h2>
+          <div class="divider"></div>
+          <p>Click vào từng trò chơi để xem hướng dẫn & Quét mã QR</p>
+        </div>
+
+        <div class="game-grid" id="gameGrid">
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Ô Ăn Quan"
+            data-image="https://images.unsplash.com/photo-1630922718047-497127608e8b?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Trò chơi chiến thuật kinh điển. Phiên bản tại Về Quán sử dụng bàn gỗ Hương và đá thạch anh. Rèn luyện tư duy tính toán và khả năng quan sát."
+            data-video="https://www.youtube.com/results?search_query=huong+dan+o+an+quan"
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1630922718047-497127608e8b?q=80&w=2070&auto=format&fit=crop"
+                class="game-thumb"
+                alt="Ô Ăn Quan"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Chiến Thuật</span>
+              <div class="game-title">Ô Ăn Quan</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Cờ Tướng"
+            data-image="https://images.unsplash.com/photo-1529699213312-3988a80410c7?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Màn đấu trí đỉnh cao trên bàn cờ gỗ mun. Không gian yên tĩnh, trà thơm, thích hợp cho những cuộc đàm đạo thâm sâu."
+            data-video="video_link_2"
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1529699213312-3988a80410c7?q=80&w=2070&auto=format&fit=crop"
+                class="game-thumb"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Trí Tuệ</span>
+              <div class="game-title">Cờ Tướng</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Bầu Cua Nghệ Thuật"
+            data-image="https://media.istockphoto.com/id/1199736855/photo/red-lanterns-during-lunar-new-year-festival.jpg?s=612x612&w=0&k=20&c=6Fq-ZlOFrwzKjGZ8SjQ_Xh5eZp9pX9X9X9X9X9X9X9"
+            data-desc="Phiên bản vẽ tay thủ công trên giấy dó. Trò chơi may mắn mang đậm không khí lễ hội cổ truyền Việt Nam."
+            data-video="video_link_3"
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1610890716271-e21f45938739?q=80&w=1780&auto=format&fit=crop"
+                class="game-thumb"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Lễ Hội</span>
+              <div class="game-title">Bầu Cua Tôm Cá</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Cờ Gánh"
+            data-image="https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Nét độc đáo của văn hóa Quảng Nam. Cách chơi 'gánh' và 'vây' đòi hỏi sự linh hoạt tuyệt vời."
+            data-video="video_link_4"
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=2070&auto=format&fit=crop"
+                class="game-thumb"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Dân Gian</span>
+              <div class="game-title">Cờ Gánh</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Cờ Vây"
+            data-image="https://images.unsplash.com/photo-1585338107529-13c9eb3b27b6?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Trò chơi chiến lược lâu đời nhất thế giới. Rèn luyện sự kiên nhẫn và tầm nhìn bao quát."
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1585338107529-13c9eb3b27b6?q=80&w=2070&auto=format&fit=crop"
+                class="game-thumb"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Trí Tuệ</span>
+              <div class="game-title">Cờ Vây</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Banh Đũa"
+            data-image="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Trò chơi khéo léo tay mắt của tuổi thơ. Bộ đũa tre được vót thủ công nhẵn mịn."
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=2070&auto=format&fit=crop"
+                class="game-thumb"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Vận Động Tinh</span>
+              <div class="game-title">Banh Đũa</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Tam Cúc"
+            data-image="https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?q=80&w=2068&auto=format&fit=crop"
+            data-desc="Bộ bài lá truyền thống của người miền Bắc. Thường chơi vào dịp Tết với luật chơi thú vị."
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?q=80&w=2068&auto=format&fit=crop"
+                class="game-thumb"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Bài Lá</span>
+              <div class="game-title">Tam Cúc</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Lô Tô Sài Gòn"
+            data-image="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Không khí sôi động với những câu rao lô tô vần điệu. Một nét văn hóa bình dân đặc sắc."
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop"
+                class="game-thumb"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Cộng Đồng</span>
+              <div class="game-title">Lô Tô</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Mạt Chược"
+            data-image="https://images.unsplash.com/photo-1560167015-8167570c946b?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Game..."
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1560167015-8167570c946b?q=80&w=2070&auto=format&fit=crop"
+                class="game-thumb"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Trí Tuệ</span>
+              <div class="game-title">Mạt Chược</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Đá Cầu"
+            data-image="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Game..."
+          >
+            <div class="thumb-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop"
+                class="game-thumb"
+              />
+            </div>
+            <div class="game-info">
+              <span class="game-cat">Vận Động</span>
+              <div class="game-title">Đá Cầu</div>
+              <button class="btn-view">Xem Hướng Dẫn</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      style="
+        background: var(--navy);
+        color: #aaa;
+        padding: 50px 0;
+        text-align: center;
+        border-top: 5px solid var(--red);
+      "
+    >
+      <div class="container">
+        <h2 class="text-gold" style="margin-bottom: 20px">THE HERITAGE HUB</h2>
+        <p style="margin-bottom: 10px">📍 Làng Đại Học, TP. Thủ Đức, TP.HCM</p>
+        <p style="margin-bottom: 30px">📞 0909.HERITAGE</p>
+        <div style="border-top: 1px solid #333; padding-top: 20px; font-size: 0.8rem">
+          © 2025 Dự án Khởi nghiệp Sinh viên UFM
+        </div>
+      </div>
+    </footer>
+
+    <div class="modal-overlay" id="gameModal" onclick="closeModal(event)">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModalDirect()">&times;</span>
+
+        <div class="modal-img" id="modalImg"></div>
+
+        <div class="modal-details">
+          <h2 class="modal-title" id="modalTitle">Tên Trò Chơi</h2>
+          <p class="modal-desc" id="modalDesc">Mô tả trò chơi...</p>
+
+          <div class="qr-section">
+            <img id="modalQR" src="" alt="QR Code" class="qr-code" />
+            <div class="qr-text">
+              <h4>Quét Mã QR</h4>
+              <p>Xem video hướng dẫn 60s & Luật chơi chi tiết trên điện thoại.</p>
+            </div>
+          </div>
+
+          <button
+            class="btn-view"
+            style="
+              margin-top: 30px;
+              width: 100%;
+              background: var(--gold);
+              border: none;
+              color: #fff;
+            "
+            onclick="closeModalDirect()"
+          >
+            Đã Hiểu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openModal(element) {
+        // Lấy dữ liệu từ thẻ data- attribute
+        const title = element.getAttribute("data-title");
+        const desc = element.getAttribute("data-desc");
+        const image = element.getAttribute("data-image");
+        const videoLink =
+          "https://www.youtube.com/results?search_query=" +
+          encodeURIComponent("hướng dẫn chơi " + title); // Tạo link search youtube giả lập
+
+        // Gán dữ liệu vào Modal
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalDesc").innerText = desc;
+        document.getElementById("modalImg").style.backgroundImage = "url('" + image + "')";
+
+        // Tạo mã QR Code động (Dùng API goqr.me)
+        // QR này khi quét sẽ dẫn đến link tìm kiếm youtube về trò chơi đó
+        document.getElementById("modalQR").src =
+          "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + videoLink;
+
+        // Hiển thị Modal
+        document.getElementById("gameModal").classList.add("active");
+      }
+
+      function closeModal(event) {
+        if (event.target.classList.contains("modal-overlay")) {
+          document.getElementById("gameModal").classList.remove("active");
+        }
+      }
+
+      function closeModalDirect() {
+        document.getElementById("gameModal").classList.remove("active");
+      }
+    </script>
+  </body>
+</html>

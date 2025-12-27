@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ | THE HERITAGE HUB - SÀI GÒN</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. CORE STYLES & VARIABLES (ĐỒNG BỘ VỚI ABOUT.HTML) --- */
+      :root {
+        --wood-primary: #5d4037;
+        --wood-dark: #2d1e18; /* Gỗ mun chủ đạo */
+        --jade: #006b54; /* Xanh ngọc điểm nhấn */
+        --jade-light: #2e8b57;
+        --gold: #c5a059;
+        --gold-glow: #ffd700;
+        --red-seal: #8b0000;
+        --cream: #f9f7f2;
+        --text: #2c2c2c;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--cream);
+        color: var(--text);
+        line-height: 1.8;
+        overflow-x: hidden;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235D4037' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cormorant Garamond", serif;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--wood-dark);
+      }
+      .serif-italic {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+      }
+      .hand-writing {
+        font-family: "Great Vibes", cursive;
+        font-size: 2rem;
+        color: var(--gold);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .section-padding {
+        padding: 100px 0;
+      }
+
+      /* HEADER */
+      header {
+        background: linear-gradient(to right, var(--wood-dark), #4e342e);
+        border-bottom: 3px solid var(--gold);
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      }
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo-area {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .custom-logo {
+        height: 55px;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.5));
+      }
+      .brand-text h1 {
+        color: var(--gold);
+        margin: 0;
+        line-height: 1;
+        font-size: 1.4rem;
+      }
+      .brand-text span {
+        color: #d7ccc8;
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        display: block;
+        font-family: "Montserrat", sans-serif;
+      }
+      .nav-links a {
+        color: #efebe9;
+        text-decoration: none;
+        margin-left: 25px;
+        font-weight: 500;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        transition: 0.3s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--gold);
+      }
+      .btn-nav {
+        border: 1px solid var(--gold);
+        padding: 8px 20px;
+        border-radius: 2px;
+        color: var(--gold) !important;
+      }
+      .btn-nav:hover {
+        background: var(--gold);
+        color: var(--wood-dark) !important;
+      }
+
+      /* --- HERO (MÀU GỖ) --- */
+      .hero {
+        height: 100vh;
+        /* Overlay màu nâu gỗ ấm áp hơn */
+        background: linear-gradient(rgba(45, 30, 24, 0.6), rgba(45, 30, 24, 0.7)),
+          url("https://images.unsplash.com/photo-1596627627832-75390eb3e3a7?q=80&w=2070&auto=format&fit=crop");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .hero-frame {
+        border: 1px solid rgba(197, 160, 89, 0.6);
+        padding: 60px 80px;
+        background: rgba(45, 30, 24, 0.8);
+        backdrop-filter: blur(8px);
+        text-align: center;
+        position: relative;
+        max-width: 950px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      }
+      .hero-frame::before,
+      .hero-frame::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--gold);
+        transition: 0.4s;
+      }
+      .hero-frame::before {
+        top: -3px;
+        left: -3px;
+        border-right: none;
+        border-bottom: none;
+      }
+      .hero-frame::after {
+        bottom: -3px;
+        right: -3px;
+        border-left: none;
+        border-top: none;
+      }
+      .hero-frame:hover::before,
+      .hero-frame:hover::after {
+        width: 100%;
+        height: 100%;
+        border-color: rgba(197, 160, 89, 0.3);
+      }
+
+      .hero h2 {
+        font-size: 4rem;
+        color: #fff;
+        margin: 10px 0;
+        line-height: 1.1;
+        text-shadow: 0 5px 20px #000;
+      }
+      .highlight-saigon {
+        color: var(--gold);
+        font-size: 4.5rem;
+        display: block;
+        margin-top: 10px;
+        text-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
+      }
+      .hero-divider {
+        font-size: 1.5rem;
+        color: var(--gold);
+        margin: 25px 0;
+      }
+
+      .btn-hero {
+        background: linear-gradient(45deg, var(--jade), var(--jade-light)); /* Nút Xanh Ngọc */
+        color: #fff;
+        padding: 16px 45px;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        display: inline-block;
+        transition: 0.3s;
+        box-shadow: 0 0 20px rgba(0, 107, 84, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .btn-hero:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 107, 84, 0.6);
+        background: var(--gold);
+        color: var(--wood-dark);
+      }
+
+      /* Scroll Indicator */
+      .scroll-down {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        text-align: center;
+        animation: bounce 2s infinite;
+      }
+      .mouse {
+        width: 30px;
+        height: 50px;
+        border: 2px solid #fff;
+        border-radius: 20px;
+        margin: 0 auto 10px;
+        position: relative;
+      }
+      .wheel {
+        width: 4px;
+        height: 8px;
+        background: #fff;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+
+      /* SECTION DECORATION */
+      .section-title {
+        text-align: center;
+        margin-bottom: 70px;
+        position: relative;
+        z-index: 2;
+      }
+      .section-title span {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-style: italic;
+      }
+      .section-title h2 {
+        font-size: 2.8rem;
+        margin-top: 5px;
+        color: var(--wood-dark);
+      }
+      .divider-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--jade);
+        margin-top: 10px;
+      }
+      .divider-icon::before,
+      .divider-icon::after {
+        content: "";
+        width: 60px;
+        height: 1px;
+        background: var(--gold);
+        margin: 0 15px;
+      }
+
+      /* INTRO & STORY BLOCKS */
+      .story-block {
+        display: flex;
+        gap: 60px;
+        align-items: center;
+      }
+      .about-text p {
+        margin-bottom: 20px;
+        color: var(--wood-primary);
+        text-align: justify;
+      }
+      .read-more {
+        color: var(--jade);
+        font-weight: bold;
+        border-bottom: 2px solid var(--gold);
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .read-more:hover {
+        color: var(--wood-dark);
+        border-color: var(--wood-dark);
+      }
+      .intro-img {
+        width: 100%;
+        border-radius: 4px;
+        box-shadow: 20px 20px 0 var(--wood-dark);
+        filter: sepia(10%);
+      }
+
+      /* HOW IT WORKS (WOOD THEME) */
+      .steps-section {
+        background-color: var(--wood-dark);
+        color: #fff;
+        position: relative;
+        background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+      }
+      .steps-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        position: relative;
+        margin-top: 50px;
+      }
+      .steps-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: 15%;
+        right: 15%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--gold), transparent);
+        z-index: 1;
+      }
+      .step-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 40px 20px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        border-radius: 4px;
+        backdrop-filter: blur(5px);
+        transition: 0.4s;
+      }
+      .step-card:hover {
+        transform: translateY(-10px);
+        background: rgba(0, 107, 84, 0.2);
+        border-color: var(--jade);
+      }
+      .step-icon-box {
+        width: 80px;
+        height: 80px;
+        background: var(--wood-dark);
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 2rem;
+        color: var(--gold);
+        position: relative;
+        transition: 0.4s;
+        box-shadow: 0 0 0 8px var(--wood-dark);
+      }
+      .step-card:hover .step-icon-box {
+        background: var(--jade);
+        color: #fff;
+        box-shadow: 0 0 20px var(--jade);
+        border-color: var(--jade);
+      }
+      .step-num {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--red-seal);
+        color: #fff;
+        padding: 2px 10px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border-radius: 10px;
+        border: 1px solid var(--gold);
+      }
+
+      /* FOUNDER'S LETTER */
+      .founder-section {
+        background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
+        background-color: #fff;
+      }
+      .letter-box {
+        border: 2px solid var(--gold);
+        padding: 50px;
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        background: #fff;
+        box-shadow: 10px 10px 0 rgba(93, 64, 55, 0.2);
+      }
+      .letter-content {
+        font-size: 1.1rem;
+        color: #5d4037;
+        font-style: italic;
+        text-align: center;
+      }
+      .signature {
+        margin-top: 30px;
+        text-align: center;
+      }
+      .stamp {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        width: 100px;
+        height: 100px;
+        border: 3px double var(--red-seal);
+        border-radius: 50%;
+        color: var(--red-seal);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: rotate(-15deg);
+        font-weight: bold;
+        font-family: "Cormorant Garamond";
+        font-size: 0.9rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      /* ZONES */
+      .zone-flex {
+        display: flex;
+        gap: 15px;
+        height: 500px;
+      }
+      .zone-card {
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        cursor: pointer;
+        border: 1px solid var(--gold);
+      }
+      .zone-card:hover {
+        flex: 3;
+        border-color: var(--jade);
+      }
+      .zone-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px;
+        background: linear-gradient(to top, rgba(62, 39, 35, 0.95), transparent);
+        color: #fff;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: 0.4s;
+      }
+      .zone-card:hover .zone-content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .zone-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-90deg);
+        white-space: nowrap;
+        font-size: 1.8rem;
+        color: var(--gold);
+        font-family: "Cormorant Garamond";
+        background: rgba(62, 39, 35, 0.8);
+        padding: 5px 25px;
+        border: 1px solid var(--gold);
+        transition: 0.3s;
+      }
+      .zone-card:hover .zone-label {
+        opacity: 0;
+      }
+
+      /* GALLERY */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 250px);
+        gap: 10px;
+      }
+      .g-item {
+        position: relative;
+        overflow: hidden;
+      }
+      .g-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+      .g-item:hover img {
+        transform: scale(1.1);
+        filter: brightness(0.8) sepia(20%);
+      }
+      .g-large {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      .g-wide {
+        grid-column: span 2;
+      }
+
+      /* TESTIMONIALS (WOOD THEME) */
+      .review-section {
+        background: var(--wood-dark);
+        color: #fff;
+      }
+      .review-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+      .review-card {
+        background: #fff;
+        padding: 40px 30px;
+        text-align: center;
+        color: var(--wood-primary);
+        border: 1px solid #e2e8f0;
+        position: relative;
+        transition: 0.4s;
+        border-top: 4px solid var(--jade);
+      }
+      .review-card:hover {
+        transform: translateY(-10px);
+        border-top-color: var(--gold);
+      }
+      .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        object-fit: cover;
+        border: 3px solid var(--cream);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .stars {
+        color: #f59e0b;
+        margin-bottom: 15px;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #281a16;
+        color: #a1887f;
+        padding: 80px 0 20px;
+        border-top: 5px solid var(--jade);
+      }
+      .footer-col h4 {
+        color: #fff;
+        margin-bottom: 25px;
+        font-size: 1.2rem;
+        border-left: 3px solid var(--gold);
+        padding-left: 15px;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col li {
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+      }
+      .footer-col a {
+        color: #a1887f;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .footer-col a:hover {
+        color: var(--gold);
+        padding-left: 5px;
+      }
+
+      /* =========================================
+         MOBILE RESPONSIVE CSS (TỐI ƯU HÓA)
+         ========================================= */
+      @media (max-width: 768px) {
+        /* Chung */
+        .section-padding {
+          padding: 60px 0;
+        }
+
+        /* Header */
+        .nav-inner {
+          flex-direction: column;
+          gap: 15px;
+        }
+        .nav-links {
+          width: 100%;
+          justify-content: center;
+          gap: 10px;
+          margin-left: 0;
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .nav-links a {
+          margin: 0 5px;
+          font-size: 0.85rem;
+        }
+
+        /* Hero */
+        .hero {
+          height: auto;
+          min-height: 90vh;
+          padding-top: 20px;
+          padding-bottom: 50px;
+        }
+        .hero-frame {
+          padding: 40px 20px;
+          width: 90%;
+        }
+        .hero h2 {
+          font-size: 2.5rem;
+        }
+        .highlight-saigon {
+          font-size: 3rem;
+        }
+        .scroll-down {
+          display: none;
+        } /* Ẩn scroll trên mobile cho đỡ rối */
+
+        /* Intro */
+        .story-block {
+          flex-direction: column;
+          gap: 30px;
+        }
+        .intro-img {
+          box-shadow: 10px 10px 0 var(--wood-dark);
+        }
+
+        /* Steps */
+        .steps-wrapper {
+          grid-template-columns: 1fr;
+          margin-top: 30px;
+        }
+        .steps-wrapper::before {
+          display: none;
+        }
+
+        /* Founder */
+        .letter-box {
+          padding: 30px 20px;
+          width: 95%;
+        }
+
+        /* Zones */
+        .zone-flex {
+          flex-direction: column;
+          height: 600px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+        }
+        .g-large,
+        .g-wide {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+        .g-item {
+          height: 250px;
+        }
+
+        /* Reviews */
+        .review-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Footer */
+        footer {
+          padding: 50px 0 20px;
+        }
+        footer .container > div {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          text-align: center;
+        }
+        .footer-col h4 {
+          border-left: none;
+          border-bottom: 2px solid var(--gold);
+          padding-bottom: 5px;
+          display: inline-block;
+          padding-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-inner">
+        <a href="index.html" class="logo-area">
+          <img
+            src="https://via.placeholder.com/150x150.png?text=LOGO"
+            alt="Logo"
+            class="custom-logo"
+          />
+          <div class="brand-text">
+            <h1>VỀ QUÁN</h1>
+            <span>THE HERITAGE HUB</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html" class="active" style="color: var(--gold)">Trang Chủ</a>
+          <a href="about.html">Câu Chuyện</a>
+          <a href="games.html">Kho Tàng Game</a>
+          <a href="menu.html">Thực Đơn</a>
+          <a href="#contact" class="btn-nav">Liên Hệ</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-frame">
+        <p class="serif-italic" style="color: var(--gold); font-size: 1.6rem; margin-bottom: 10px">
+          Chào mừng bạn trở về với
+        </p>
+        <h2>
+          DI SẢN SỐNG GIỮA LÒNG <br />
+          <span class="highlight-saigon">SÀI GÒN</span>
+        </h2>
+
+        <div class="hero-divider">❖ ❖ ❖</div>
+
+        <p style="color: #ddd; margin-bottom: 40px; font-size: 1.15rem">
+          Không gian cà phê boardgame đầu tiên kết hợp <br />
+          <strong>Nghệ Thuật Thủ Công</strong> & <strong>Công Nghệ Tương Tác</strong>
+        </p>
+        <a href="games.html" class="btn-hero">Khám Phá Ngay</a>
+      </div>
+
+      <div class="scroll-down">
+        <div class="mouse"><div class="wheel"></div></div>
+        <span style="font-size: 0.8rem; letter-spacing: 2px">CUỘN XUỐNG</span>
+      </div>
+    </section>
+
+    <section class="section-padding container">
+      <div class="story-block">
+        <div style="flex: 1">
+          <div class="section-title" style="text-align: left; margin-bottom: 30px">
+            <span>Về Chúng Tôi</span>
+            <h2>
+              KHI QUÁ KHỨ <br />
+              CHẠM TƯƠNG LAI
+            </h2>
+            <div class="divider-icon" style="justify-content: flex-start">✦</div>
+          </div>
+          <p class="about-text">
+            Giữa lòng Sài Gòn hoa lệ và hối hả, <b>VỀ QUÁN</b> ra đời như một nốt trầm văn hóa.
+            Chúng tôi không chỉ bán cà phê, chúng tôi kể lại câu chuyện của ông cha bằng ngôn ngữ
+            của người trẻ.
+          </p>
+          <p class="about-text">
+            Tại đây, những bàn cờ Ô Ăn Quan không phủ bụi thời gian mà tỏa sáng nhờ công nghệ AR.
+            Nơi bạn có thể gác lại âu lo để tìm về sự kết nối thực sự (Real Connection) bên tách trà
+            sen thơm ngát.
+          </p>
+          <a href="about.html" class="read-more">Đọc câu chuyện đầy đủ ➔</a>
+        </div>
+        <div style="flex: 1">
+          <img
+            src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?q=80&w=2069&auto=format&fit=crop"
+            class="intro-img"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding steps-section">
+      <div class="container">
+        <div class="section-title">
+          <span style="color: var(--gold-shine)">Trải nghiệm dễ dàng</span>
+          <h2 style="color: #fff">3 BƯỚC NHẬP CUỘC</h2>
+          <div class="divider-icon" style="color: var(--gold)">✦</div>
+        </div>
+
+        <div class="steps-wrapper">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <div class="step-icon-box"><i class="fa-solid fa-chess-board"></i></div>
+            <h3 style="color: var(--gold)">CHỌN GAME</h3>
+            <p style="color: #ccc; font-size: 0.95rem">
+              Lựa chọn 1 trong 20 bộ game thủ công (Gỗ, Đá, Gốm) tại quầy Bar hoặc kệ trưng bày.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <div class="step-icon-box"><i class="fa-solid fa-qrcode"></i></div>
+            <h3 style="color: var(--gold)">QUÉT MÃ QR</h3>
+            <p style="color: #ccc; font-size: 0.95rem">
+              Dùng điện thoại quét mã trên bàn cờ. Video hướng dẫn 60s sẽ hiện ra ngay lập tức.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <div class="step-icon-box"><i class="fa-solid fa-people-group"></i></div>
+            <h3 style="color: var(--gold)">KẾT NỐI THỰC</h3>
+            <p style="color: #ccc; font-size: 0.95rem">
+              Thưởng thức trà sen thơm ngát và tranh tài cùng bạn bè không giới hạn thời gian.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding founder-section">
+      <div class="container">
+        <div class="letter-box">
+          <h3 style="text-align: center; color: var(--wood-dark); margin-bottom: 20px">
+            LỜI HỨA THƯƠNG HIỆU
+          </h3>
+          <p class="letter-content">
+            "Chúng tôi không bán vé về tuổi thơ. Chúng tôi mang tuổi thơ đến hiện tại.<br /><br />
+            Về Quán tin rằng, một trò chơi chỉ thực sự sống khi nó được chơi, được cười đùa, và được
+            tranh luận sôi nổi. Chúng tôi cam kết gìn giữ hồn cốt dân tộc trong từng quân cờ, từng
+            ly nước, để mỗi lần bạn ghé thăm là một lần tự hào về văn hóa Việt Nam."
+          </p>
+          <div class="signature">
+            <div class="hand-writing">The Founders</div>
+            <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--wood-primary)"
+              >Nhóm Sinh Viên UFM</span
+            >
+          </div>
+          <div class="stamp">VỀ QUÁN<br />OFFICIAL</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding container">
+      <div class="section-title">
+        <span>Không gian đa chiều</span>
+        <h2>MÔ HÌNH 3 TRẢI NGHIỆM</h2>
+        <div class="divider-icon">❖</div>
+      </div>
+
+      <div class="zone-flex">
+        <div
+          class="zone-card"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop');
+          "
+        >
+          <div class="zone-label">ZEN ZONE</div>
+          <div class="zone-content">
+            <h3 style="color: var(--gold)">ZEN ZONE (TĨNH)</h3>
+            <p>Dành cho Cờ Tướng, Cờ Vây và làm việc.</p>
+          </div>
+        </div>
+        <div
+          class="zone-card"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop');
+          "
+        >
+          <div class="zone-label">BATTLE ZONE</div>
+          <div class="zone-content">
+            <h3 style="color: var(--jade)">BATTLE ZONE (ĐỘNG)</h3>
+            <p>Sôi động với Ô Ăn Quan, Lô Tô.</p>
+          </div>
+        </div>
+        <div
+          class="zone-card"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop');
+          "
+        >
+          <div class="zone-label">HERITAGE LAB</div>
+          <div class="zone-content">
+            <h3 style="color: #fff">HERITAGE LAB</h3>
+            <p>Workshop thủ công & Trải nghiệm công nghệ.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding" style="background: #fff">
+      <div class="container">
+        <div class="section-title">
+          <span>Góc Nhìn Di Sản</span>
+          <h2>THƯ VIỆN ẢNH</h2>
+          <div class="divider-icon">✦</div>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="g-item g-large">
+            <img
+              src="https://images.unsplash.com/photo-1528360983277-13d9b152c6d4?q=80&w=2070&auto=format&fit=crop"
+              alt="Không gian lớn"
+            />
+          </div>
+          <div class="g-item">
+            <img
+              src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1887&auto=format&fit=crop"
+              alt="Cafe"
+            />
+          </div>
+          <div class="g-item">
+            <img
+              src="https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=2000&auto=format&fit=crop"
+              alt="Boardgame"
+            />
+          </div>
+          <div class="g-item g-wide">
+            <img
+              src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop"
+              alt="Lô tô"
+            />
+          </div>
+          <div class="g-item">
+            <img
+              src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=1964&auto=format&fit=crop"
+              alt="Trà"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding review-section">
+      <div class="container">
+        <div class="section-title">
+          <span style="color: #ccc">Cộng đồng nói gì?</span>
+          <h2 style="color: var(--gold)">TIẾNG VỌNG ĐA CHIỀU</h2>
+          <div class="divider-icon" style="color: #fff">✦</div>
+        </div>
+
+        <div class="review-grid">
+          <div class="review-card">
+            <img
+              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1780&auto=format&fit=crop"
+              class="avatar"
+            />
+            <div class="stars">★★★★★</div>
+            <p class="quote">
+              "Không gian Zen Zone cực kỳ yên tĩnh để mình ôn thi. Trà sen ở đây rất thơm, giúp tỉnh
+              táo mà không bị say như cafe."
+            </p>
+            <div class="author">Minh Anh</div>
+            <span class="role">Sinh viên UFM - Năm 3</span>
+          </div>
+          <div class="review-card">
+            <img
+              src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1780&auto=format&fit=crop"
+              class="avatar"
+            />
+            <div class="stars">★★★★★</div>
+            <p class="quote">
+              "Mình đưa ông nội đến chơi Cờ Tướng. Ông khen bàn cờ gốm rất đẹp, không khí hoài cổ
+              làm ông nhớ về ngày xưa."
+            </p>
+            <div class="author">Hoàng Nam</div>
+            <span class="role">Cư dân Sài Gòn</span>
+          </div>
+          <div class="review-card">
+            <img
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
+              class="avatar"
+            />
+            <div class="stars">★★★★★</div>
+            <p class="quote">
+              "Team mình đã có một buổi chơi Lô Tô cười ra nước mắt tại Battle Zone. Đồ ăn vặt như
+              mứt gừng, kẹo lạc rất dính!"
+            </p>
+            <div class="author">Thảo Vy</div>
+            <span class="role">Gen Z Content Creator</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="container">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+          "
+        >
+          <div class="footer-col">
+            <h2 style="color: var(--gold); font-family: 'Cormorant Garamond'; margin-bottom: 20px">
+              THE HERITAGE HUB
+            </h2>
+            <p>
+              Dự án khởi nghiệp sinh viên UFM. Nơi lưu giữ và lan tỏa giá trị văn hóa Việt qua lăng
+              kính hiện đại.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>THÀNH VIÊN</h4>
+            <ul>
+              <li><a href="#">Đăng ký Membership</a></li>
+              <li><a href="#">Quyền lợi hạng Gold</a></li>
+              <li><a href="#">Lịch giải đấu tuần</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>LIÊN HỆ</h4>
+            <ul>
+              <li>
+                <i class="fa-solid fa-location-dot" style="color: var(--gold); width: 20px"></i> Sài
+                Gòn, Việt Nam
+              </li>
+              <li>
+                <i class="fa-solid fa-phone" style="color: var(--gold); width: 20px"></i>
+                0909.HERITAGE
+              </li>
+              <li>
+                <i class="fa-solid fa-envelope" style="color: var(--gold); width: 20px"></i>
+                hello@vequan.vn
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          style="
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.85rem;
+          "
+        >
+          © 2025 THE HERITAGE HUB. Designed with ❤️ by UFM Students.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

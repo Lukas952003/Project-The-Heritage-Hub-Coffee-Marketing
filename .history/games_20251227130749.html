@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kho Tàng Game | VỀ QUÁN</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .game-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+      .game-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        overflow: hidden;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .game-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--gold);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .game-thumb {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .game-info {
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* Modal Styles */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+      }
+      .modal-box {
+        background: #fff;
+        width: 800px;
+        max-width: 90%;
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+        position: relative;
+      }
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-inner">
+        <a href="index.html" class="logo-area">
+          <img
+            src="https://via.placeholder.com/50/C5A059/000000?text=V"
+            alt="Logo"
+            class="logo-img"
+          />
+          <div class="brand-text">
+            <h1>VỀ QUÁN</h1>
+            <span>THE HERITAGE HUB</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang Chủ</a>
+          <a href="about.html">Câu Chuyện</a>
+          <a href="games.html" class="active">Kho Tàng Game</a>
+          <a href="menu.html">Thực Đơn</a>
+        </nav>
+      </div>
+    </header>
+
+    <section
+      class="page-hero"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1630922718047-497127608e8b?q=80&w=2070&auto=format&fit=crop');
+      "
+    >
+      <h2 class="hero-title">THƯ VIỆN 20 TRÒ CHƠI</h2>
+    </section>
+
+    <div class="container">
+      <div class="game-grid">
+        <div
+          class="game-card"
+          onclick="openModal('Ô Ăn Quan', 'Trò chơi chiến thuật kinh điển. Bàn gỗ hương, quân đá mã não.')"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1630922718047-497127608e8b?q=80&w=2070&auto=format&fit=crop"
+            class="game-thumb"
+          />
+          <div class="game-info">
+            <h3>Ô Ăn Quan</h3>
+            <span class="text-gold">Chiến thuật</span>
+          </div>
+        </div>
+        <div
+          class="game-card"
+          onclick="openModal('Cờ Gánh', 'Nét độc đáo Quảng Nam. Lối chơi Gánh và Vây thú vị.')"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=2070&auto=format&fit=crop"
+            class="game-thumb"
+          />
+          <div class="game-info">
+            <h3>Cờ Gánh</h3>
+            <span class="text-gold">Trí tuệ</span>
+          </div>
+        </div>
+        <div
+          class="game-card"
+          onclick="openModal('Bầu Cua', 'Phiên bản nghệ thuật vẽ tay trên giấy dó.')"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1610890716271-e21f45938739?q=80&w=1780&auto=format&fit=crop"
+            class="game-thumb"
+          />
+          <div class="game-info">
+            <h3>Bầu Cua Tôm Cá</h3>
+            <span class="text-gold">May mắn</span>
+          </div>
+        </div>
+        <div
+          class="game-card"
+          onclick="openModal('Tam Cúc', 'Bộ bài truyền thống Bắc Bộ. Luật chơi thâm thúy.')"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?q=80&w=2068&auto=format&fit=crop"
+            class="game-thumb"
+          />
+          <div class="game-info">
+            <h3>Tam Cúc</h3>
+            <span class="text-gold">Bài lá</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="gameModal" onclick="this.style.display='none'">
+      <div class="modal-box" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="document.getElementById('gameModal').style.display='none'"
+          >X</span
+        >
+        <div style="flex: 1">
+          <img src="https://via.placeholder.com/400x400" style="width: 100%" />
+        </div>
+        <div style="flex: 1">
+          <h2 id="mTitle" class="text-red">Tên Game</h2>
+          <p id="mDesc" style="margin: 20px 0">Mô tả...</p>
+          <div style="background: #eee; padding: 10px">
+            <h4>Quét QR xem hướng dẫn</h4>
+            <img id="mQR" src="" style="width: 100px" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openModal(title, desc) {
+        document.getElementById("gameModal").style.display = "flex";
+        document.getElementById("mTitle").innerText = title;
+        document.getElementById("mDesc").innerText = desc;
+        document.getElementById("mQR").src =
+          "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=HuongDan" + title;
+      }
+    </script>
+  </body>
+</html>

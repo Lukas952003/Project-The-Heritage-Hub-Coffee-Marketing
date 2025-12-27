@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ | THE HERITAGE HUB</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. CORE STYLES --- */
+      :root {
+        --gold: #d4af37;
+        --gold-dim: #aa8a2e;
+        --red: #8b0000;
+        --navy: #0f172a;
+        --cream: #f5f2e9;
+        --text: #2c2c2c;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--cream);
+        color: var(--text);
+        line-height: 1.8;
+        overflow-x: hidden;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cormorant Garamond", serif;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--navy);
+      }
+      .serif-italic {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .section-padding {
+        padding: 90px 0;
+      }
+
+      /* --- 2. HEADER --- */
+      header {
+        background: linear-gradient(to right, #0f172a, #1e293b);
+        border-bottom: 3px solid var(--gold);
+        padding: 12px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      }
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo-badge {
+        width: 45px;
+        height: 45px;
+        background: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: var(--navy);
+        font-size: 1.5rem;
+        border: 2px solid #fff;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+      }
+      .brand-text h1 {
+        color: var(--gold);
+        margin: 0;
+        line-height: 1;
+        font-size: 1.4rem;
+      }
+      .brand-text span {
+        color: #ccc;
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        display: block;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .nav-links a {
+        color: #e2e8f0;
+        text-decoration: none;
+        margin-left: 25px;
+        font-weight: 500;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        transition: 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .btn-nav {
+        border: 1px solid var(--gold);
+        padding: 8px 20px;
+        border-radius: 2px;
+        color: var(--gold) !important;
+      }
+      .btn-nav:hover {
+        background: var(--gold);
+        color: var(--navy) !important;
+      }
+
+      /* --- 3. HERO --- */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.7)),
+          url("https://images.unsplash.com/photo-1596627627832-75390eb3e3a7?q=80&w=2070&auto=format&fit=crop");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-frame {
+        border: 1px solid rgba(212, 175, 55, 0.6);
+        padding: 50px 70px;
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(8px);
+        text-align: center;
+        position: relative;
+        max-width: 900px;
+      }
+      .hero-frame::before,
+      .hero-frame::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border: 3px solid var(--gold);
+        transition: 0.4s;
+      }
+      .hero-frame::before {
+        top: -3px;
+        left: -3px;
+        border-right: none;
+        border-bottom: none;
+      }
+      .hero-frame::after {
+        bottom: -3px;
+        right: -3px;
+        border-left: none;
+        border-top: none;
+      }
+      .hero-frame:hover::before,
+      .hero-frame:hover::after {
+        width: 100%;
+        height: 100%;
+        border-color: rgba(212, 175, 55, 0.3);
+      }
+
+      .hero h2 {
+        font-size: 3.8rem;
+        color: #fff;
+        margin: 10px 0;
+        line-height: 1.1;
+      }
+      .hero-divider {
+        font-size: 1.5rem;
+        color: var(--gold);
+        margin: 20px 0;
+      }
+      .btn-hero {
+        background: var(--gold);
+        color: var(--navy);
+        padding: 15px 40px;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        display: inline-block;
+        transition: 0.3s;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+      .btn-hero:hover {
+        background: #fff;
+        transform: translateY(-5px);
+      }
+
+      /* --- 4. SECTIONS DECORATION --- */
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 2;
+      }
+      .section-title span {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-style: italic;
+      }
+      .section-title h2 {
+        font-size: 2.8rem;
+        margin-top: 5px;
+        color: var(--navy);
+      }
+      .divider-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--red);
+        margin-top: 10px;
+      }
+      .divider-icon::before,
+      .divider-icon::after {
+        content: "";
+        width: 60px;
+        height: 1px;
+        background: var(--gold);
+        margin: 0 15px;
+      }
+
+      /* --- 5. HOW IT WORKS (NEW) --- */
+      .process-section {
+        background: #fff;
+      }
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+      }
+      .process-item {
+        text-align: center;
+        padding: 40px 20px;
+        border: 1px dashed #ddd;
+        position: relative;
+        transition: 0.3s;
+      }
+      .process-item:hover {
+        border-color: var(--gold);
+        background: #fffcf5;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+      .step-num {
+        width: 40px;
+        height: 40px;
+        background: var(--navy);
+        color: #fff;
+        border-radius: 50%;
+        line-height: 40px;
+        font-weight: bold;
+        margin: 0 auto 20px;
+        font-family: "Cormorant Garamond";
+      }
+      .process-icon {
+        font-size: 2.5rem;
+        color: var(--gold);
+        margin-bottom: 15px;
+      }
+
+      /* --- 6. VALUES & ZONES --- */
+      .values-section {
+        background: var(--navy);
+        color: #fff;
+        position: relative;
+      }
+      .value-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        position: relative;
+        z-index: 2;
+      }
+      .value-item {
+        text-align: center;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.02);
+        transition: 0.3s;
+      }
+      .value-item:hover {
+        border-color: var(--gold);
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-5px);
+      }
+
+      .zone-flex {
+        display: flex;
+        gap: 15px;
+        height: 450px;
+      }
+      .zone-card {
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        transition: 0.5s;
+        cursor: pointer;
+        border: 1px solid var(--gold);
+      }
+      .zone-card:hover {
+        flex: 2.5;
+      }
+      .zone-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, #000, transparent);
+        color: #fff;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: 0.4s;
+      }
+      .zone-card:hover .zone-content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .zone-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-90deg);
+        white-space: nowrap;
+        font-size: 1.5rem;
+        color: var(--gold);
+        font-family: "Cormorant Garamond";
+        background: rgba(0, 0, 0, 0.6);
+        padding: 5px 20px;
+        border: 1px solid var(--gold);
+        transition: 0.3s;
+      }
+      .zone-card:hover .zone-label {
+        opacity: 0;
+      }
+
+      /* --- 7. GALLERY (MOSAIC) (NEW) --- */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 200px);
+        gap: 10px;
+      }
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.1);
+        filter: brightness(0.8);
+      }
+      .g-large {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      .g-wide {
+        grid-column: span 2;
+      }
+
+      /* --- 8. TESTIMONIALS (NEW) --- */
+      .review-section {
+        background: var(--navy);
+        color: #fff;
+        text-align: center;
+      }
+      .review-box {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(197, 160, 89, 0.3);
+        padding: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .quote-icon {
+        font-size: 3rem;
+        color: var(--gold);
+        opacity: 0.3;
+        margin-bottom: 20px;
+      }
+      .review-text {
+        font-size: 1.2rem;
+        font-style: italic;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .review-author {
+        color: var(--gold);
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      /* --- 9. NEWSLETTER (NEW) --- */
+      .newsletter {
+        background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
+        background-color: #e6ddc4;
+        border-top: 5px solid var(--red);
+        border-bottom: 5px solid var(--red);
+        padding: 60px 0;
+        text-align: center;
+        margin-top: 50px;
+      }
+      .news-input {
+        padding: 15px;
+        width: 300px;
+        border: 1px solid var(--navy);
+        background: #fff;
+        font-family: "Montserrat";
+      }
+      .btn-sub {
+        padding: 15px 30px;
+        background: var(--red);
+        color: #fff;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+
+      /* --- 10. FOOTER --- */
+      footer {
+        background: #0a0f1c;
+        color: #888;
+        padding: 70px 0 20px;
+      }
+      .footer-col h4 {
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col li {
+        margin-bottom: 10px;
+      }
+      .footer-col a {
+        color: #888;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .footer-col a:hover {
+        color: var(--gold);
+        padding-left: 5px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h2 {
+          font-size: 2.5rem;
+        }
+        .process-grid,
+        .value-grid {
+          grid-template-columns: 1fr;
+        }
+        .zone-flex {
+          flex-direction: column;
+          height: 600px;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+        }
+        .g-large,
+        .g-wide {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-inner">
+        <a
+          href="index.html"
+          class="logo-area"
+          style="text-decoration: none; display: flex; align-items: center; gap: 15px"
+        >
+          <div class="logo-badge">V</div>
+          <div class="brand-text">
+            <h1>VỀ QUÁN</h1>
+            <span>THE HERITAGE HUB</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html" style="color: var(--gold)">Trang Chủ</a>
+          <a href="about.html">Câu Chuyện</a>
+          <a href="games.html">Kho Tàng Game</a>
+          <a href="menu.html">Thực Đơn</a>
+          <a href="#contact" class="btn-nav">Liên Hệ</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-frame">
+        <p class="serif-italic" style="color: var(--gold); font-size: 1.6rem; margin-bottom: 10px">
+          Chào mừng bạn trở về với
+        </p>
+        <h2>
+          DI SẢN SỐNG <br />
+          GIỮA LÒNG THỦ ĐỨC
+        </h2>
+        <div class="hero-divider">❖ ❖ ❖</div>
+        <p style="color: #ddd; margin-bottom: 40px; font-size: 1.1rem">
+          Không gian cà phê boardgame đầu tiên kết hợp <br />
+          <strong>Nghệ Thuật Thủ Công</strong> & <strong>Công Nghệ Tương Tác</strong>
+        </p>
+        <a href="games.html" class="btn-hero">Khám Phá Ngay</a>
+      </div>
+    </section>
+
+    <section class="section-padding container">
+      <div style="display: flex; gap: 50px; align-items: center; flex-wrap: wrap">
+        <div style="flex: 1">
+          <div class="section-title" style="text-align: left; margin-bottom: 30px">
+            <span>Về Chúng Tôi</span>
+            <h2>
+              KHI QUÁ KHỨ <br />
+              CHẠM TƯƠNG LAI
+            </h2>
+            <div class="divider-icon" style="justify-content: flex-start">✦</div>
+          </div>
+          <p style="text-align: justify; margin-bottom: 20px; color: #555">
+            Giữa nhịp sống hối hả của Làng Đại Học, <b>VỀ QUÁN</b> ra đời như một điểm chạm văn hóa.
+            Chúng tôi không chỉ bán cà phê, chúng tôi kể lại câu chuyện của ông cha bằng ngôn ngữ
+            của người trẻ.
+          </p>
+          <p style="text-align: justify; margin-bottom: 30px; color: #555">
+            Bạn quên luật chơi Ô Ăn Quan? Đừng lo, mã <b>QR Code</b> trên mỗi bàn cờ sẽ hướng dẫn
+            bạn trong 60 giây. Bạn muốn không gian yên tĩnh để làm việc? Khu vực
+            <b>Heritage Lab</b> luôn sẵn sàng.
+          </p>
+          <a
+            href="about.html"
+            style="
+              color: var(--red);
+              font-weight: bold;
+              border-bottom: 2px solid var(--gold);
+              text-decoration: none;
+            "
+            >Đọc câu chuyện đầy đủ ➔</a
+          >
+        </div>
+        <div style="flex: 1">
+          <img
+            src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?q=80&w=2069&auto=format&fit=crop"
+            style="width: 100%; border-radius: 4px; box-shadow: 20px 20px 0 var(--navy)"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding process-section">
+      <div class="container">
+        <div class="section-title">
+          <span>Trải nghiệm dễ dàng</span>
+          <h2>3 BƯỚC NHẬP CUỘC</h2>
+          <div class="divider-icon"><i class="fa-solid fa-scroll ornament-icon"></i></div>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-item">
+            <div class="step-num">01</div>
+            <i class="fa-solid fa-chess-board process-icon"></i>
+            <h3>CHỌN GAME</h3>
+            <p style="color: #666; font-size: 0.9rem">
+              Lựa chọn 1 trong 20 bộ game thủ công tại quầy Bar hoặc kệ trưng bày.
+            </p>
+          </div>
+          <div class="process-item">
+            <div class="step-num">02</div>
+            <i class="fa-solid fa-qrcode process-icon"></i>
+            <h3>QUÉT MÃ QR</h3>
+            <p style="color: #666; font-size: 0.9rem">
+              Sử dụng điện thoại quét mã trên bàn cờ để xem Video hướng dẫn 60s.
+            </p>
+          </div>
+          <div class="process-item">
+            <div class="step-num">03</div>
+            <i class="fa-solid fa-people-group process-icon"></i>
+            <h3>KẾT NỐI</h3>
+            <p style="color: #666; font-size: 0.9rem">
+              Thưởng thức trà thơm và tranh tài cùng bạn bè không giới hạn thời gian.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding values-section">
+      <div class="container">
+        <div class="section-title">
+          <span style="color: #ccc">Giá trị cốt lõi</span>
+          <h2 style="color: var(--gold)">TẠI SAO CHỌN VỀ QUÁN?</h2>
+          <div class="divider-icon" style="color: #fff">✦</div>
+        </div>
+
+        <div class="value-grid">
+          <div class="value-item">
+            <i
+              class="fa-solid fa-chess-rook"
+              style="font-size: 3rem; color: var(--gold); margin-bottom: 20px"
+            ></i>
+            <h3 style="color: #fff; margin-bottom: 10px">DI SẢN THỦ CÔNG</h3>
+            <p style="color: #bbb; font-size: 0.9rem">
+              20+ bộ Boardgame chế tác từ gỗ hương, gốm Bát Tràng, nói không với nhựa.
+            </p>
+          </div>
+          <div class="value-item">
+            <i
+              class="fa-solid fa-mobile-screen-button"
+              style="font-size: 3rem; color: var(--gold); margin-bottom: 20px"
+            ></i>
+            <h3 style="color: #fff; margin-bottom: 10px">CÔNG NGHỆ AR</h3>
+            <p style="color: #bbb; font-size: 0.9rem">
+              Tái hiện lịch sử hào hùng và hướng dẫn chơi trực quan qua App.
+            </p>
+          </div>
+          <div class="value-item">
+            <i
+              class="fa-solid fa-leaf"
+              style="font-size: 3rem; color: var(--gold); margin-bottom: 20px"
+            ></i>
+            <h3 style="color: #fff; margin-bottom: 10px">NGUYÊN LIỆU XANH</h3>
+            <p style="color: #bbb; font-size: 0.9rem">
+              Sử dụng nông sản Việt: Cafe Cầu Đất, Trà Sen Tây Hồ, Mứt Gừng Huế.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding container">
+      <div class="section-title">
+        <span>Không gian đa chiều</span>
+        <h2>MÔ HÌNH 3 TRẢI NGHIỆM</h2>
+        <div class="divider-icon">❖</div>
+      </div>
+
+      <div class="zone-flex">
+        <div
+          class="zone-card"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop');
+          "
+        >
+          <div class="zone-label">ZEN ZONE</div>
+          <div class="zone-content">
+            <h3 style="color: var(--gold)">ZEN ZONE (TĨNH)</h3>
+            <p>Dành cho Cờ Tướng, Cờ Vây và làm việc.</p>
+          </div>
+        </div>
+        <div
+          class="zone-card"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop');
+          "
+        >
+          <div class="zone-label">BATTLE ZONE</div>
+          <div class="zone-content">
+            <h3 style="color: var(--red)">BATTLE ZONE (ĐỘNG)</h3>
+            <p>Sôi động với Ô Ăn Quan, Lô Tô.</p>
+          </div>
+        </div>
+        <div
+          class="zone-card"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop');
+          "
+        >
+          <div class="zone-label">HERITAGE LAB</div>
+          <div class="zone-content">
+            <h3 style="color: #fff">HERITAGE LAB</h3>
+            <p>Workshop thủ công & Trải nghiệm công nghệ.</p>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 40px">
+        <a href="about.html" class="btn-nav">Xem Chi Tiết</a>
+      </div>
+    </section>
+
+    <section class="section-padding" style="background: #fff">
+      <div class="container">
+        <div class="section-title">
+          <span>Góc Nhìn Di Sản</span>
+          <h2>THƯ VIỆN ẢNH</h2>
+          <div class="divider-icon">✦</div>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item g-large">
+            <img
+              src="https://images.unsplash.com/photo-1528360983277-13d9b152c6d4?q=80&w=2070&auto=format&fit=crop"
+              alt="Không gian lớn"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1887&auto=format&fit=crop"
+              alt="Cafe"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=2000&auto=format&fit=crop"
+              alt="Boardgame"
+            />
+          </div>
+          <div class="gallery-item g-wide">
+            <img
+              src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop"
+              alt="Lô tô"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=1964&auto=format&fit=crop"
+              alt="Trà"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding review-section">
+      <div class="container">
+        <div class="review-box">
+          <i class="fa-solid fa-quote-left quote-icon"></i>
+          <p class="review-text">
+            "Một không gian tuyệt vời tại Làng Đại Học. Tôi chưa bao giờ nghĩ chơi Ô Ăn Quan lại thú
+            vị và 'ngầu' đến thế. Trà sen ở đây rất thơm, không gian thì cực kỳ chill để học bài
+            buổi sáng."
+          </p>
+          <div class="review-author">— MINH ANH (SINH VIÊN UFM)</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="newsletter">
+      <div class="container">
+        <h3 style="color: var(--navy); margin-bottom: 10px">NHẬN VÉ MỜI SỰ KIỆN</h3>
+        <p style="margin-bottom: 20px">
+          Đăng ký để nhận voucher giảm 20% và lịch giải đấu hàng tuần.
+        </p>
+        <form>
+          <input type="email" placeholder="Nhập email của bạn..." class="news-input" />
+          <button type="button" class="btn-sub">Đăng Ký</button>
+        </form>
+      </div>
+    </div>
+
+    <footer id="contact">
+      <div class="container">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+          "
+        >
+          <div class="footer-col">
+            <h2 style="color: var(--gold); font-family: 'Cormorant Garamond'; margin-bottom: 20px">
+              THE HERITAGE HUB
+            </h2>
+            <p>
+              Dự án khởi nghiệp sinh viên UFM. Nơi lưu giữ và lan tỏa giá trị văn hóa Việt qua lăng
+              kính hiện đại.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>LIÊN HỆ</h4>
+            <ul>
+              <li>
+                <i class="fa-solid fa-location-dot" style="color: var(--gold); width: 20px"></i>
+                Làng ĐH Quốc Gia, TP. Thủ Đức
+              </li>
+              <li>
+                <i class="fa-solid fa-phone" style="color: var(--gold); width: 20px"></i>
+                0909.HERITAGE
+              </li>
+              <li>
+                <i class="fa-solid fa-envelope" style="color: var(--gold); width: 20px"></i>
+                hello@vequan.vn
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>GIỜ MỞ CỬA</h4>
+            <ul>
+              <li>Thứ 2 - Thứ 6: 07:00 - 22:00</li>
+              <li>Thứ 7 - CN: 08:00 - 23:00</li>
+              <li style="color: var(--red)">*Mở cửa xuyên Tết</li>
+            </ul>
+          </div>
+        </div>
+        <div
+          style="
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.8rem;
+          "
+        >
+          © 2025 THE HERITAGE HUB. Designed with ❤️ by UFM Students.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

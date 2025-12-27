@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE HERITAGE HUB | VỀ QUÁN - Thủ Đức</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. SETTINGS & VARIABLES --- */
+      :root {
+        /* Palette Hoàng Gia Đông Dương */
+        --gold-primary: #c5a059; /* Vàng đồng cổ */
+        --gold-light: #f2e6ce; /* Vàng kem nền */
+        --red-lacquer: #8a1c1c; /* Đỏ sơn mài */
+        --green-jade: #1a5f48; /* Xanh ngọc lục bảo */
+        --navy-deep: #0b1321; /* Xanh đen màn đêm */
+        --text-body: #333333;
+        --paper-bg: #f9f7f2; /* Màu giấy dó */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--paper-bg);
+        color: var(--text-body);
+        line-height: 1.7;
+        /* Texture giấy dó + noise nhẹ */
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      }
+
+      /* Typography */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cinzel", serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--navy-deep);
+      }
+      .font-serif {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+      }
+
+      .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .text-gold {
+        color: var(--gold-primary);
+      }
+      .text-red {
+        color: var(--red-lacquer);
+      }
+      .bg-navy {
+        background-color: var(--navy-deep);
+        color: var(--gold-light);
+      }
+
+      /* --- 2. COMPONENTS --- */
+
+      /* Buttons */
+      .btn-gold {
+        display: inline-block;
+        padding: 15px 40px;
+        background: transparent;
+        border: 1px solid var(--gold-primary);
+        color: var(--gold-primary);
+        text-decoration: none;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.4s;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-gold:hover {
+        background: var(--gold-primary);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+      }
+
+      /* Section Headers */
+      .section-header {
+        text-align: center;
+        margin-bottom: 70px;
+        position: relative;
+      }
+      .section-header h2 {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
+      }
+      .section-header .sub-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        color: var(--gold-primary);
+        font-style: italic;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+      .divider-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        color: var(--red-lacquer);
+      }
+      .divider-icon::before,
+      .divider-icon::after {
+        content: "";
+        height: 1px;
+        width: 60px;
+        background: var(--gold-primary);
+        margin: 0 15px;
+      }
+
+      /* --- 3. HEADER & NAVIGATION --- */
+      header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 999;
+        background: rgba(11, 19, 33, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid var(--gold-primary);
+        padding: 10px 0;
+        transition: 0.3s;
+      }
+
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-decoration: none;
+      }
+      /* Logo Class - Chèn ảnh logo của bạn vào đây */
+      .main-logo {
+        height: 60px;
+        width: auto;
+        filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.4));
+      }
+
+      .brand-text h1 {
+        font-size: 1.4rem;
+        color: var(--gold-primary);
+        margin: 0;
+        line-height: 1;
+      }
+      .brand-text span {
+        font-size: 0.7rem;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 3px;
+        display: block;
+        margin-top: 5px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+      .nav-links a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: 0.3s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--gold-primary);
+      }
+
+      /* --- 4. HERO SECTION (Parallax) --- */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(11, 19, 33, 0.6), rgba(11, 19, 33, 0.4)),
+          url("https://images.unsplash.com/photo-1596627627832-75390eb3e3a7?q=80&w=2070&auto=format&fit=crop");
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .hero-content {
+        border: 1px solid rgba(197, 160, 89, 0.5);
+        padding: 60px;
+        background: rgba(11, 19, 33, 0.6);
+        backdrop-filter: blur(3px);
+        max-width: 900px;
+        position: relative;
+      }
+      /* Góc trang trí */
+      .hero-content::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        width: 30px;
+        height: 30px;
+        border-top: 3px solid var(--gold-primary);
+        border-left: 3px solid var(--gold-primary);
+      }
+      .hero-content::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        right: -5px;
+        width: 30px;
+        height: 30px;
+        border-bottom: 3px solid var(--gold-primary);
+        border-right: 3px solid var(--gold-primary);
+      }
+
+      .hero h2 {
+        font-size: 4rem;
+        color: #fff;
+        margin-bottom: 20px;
+        text-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+      }
+      .hero p {
+        font-size: 1.4rem;
+        color: var(--gold-light);
+        margin-bottom: 40px;
+        font-weight: 300;
+      }
+
+      /* --- 5. THE PHILOSOPHY (VỀ CHÚNG TÔI) --- */
+      .philosophy {
+        padding: 100px 0;
+        background: #fff;
+      }
+      .phil-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .phil-content h3 {
+        font-size: 2rem;
+        color: var(--red-lacquer);
+        margin-bottom: 20px;
+      }
+      .phil-content p {
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+        text-align: justify;
+        color: #555;
+      }
+
+      .phil-img-wrapper {
+        position: relative;
+      }
+      .phil-img {
+        width: 100%;
+        border-radius: 4px;
+        box-shadow: 20px 20px 0 var(--gold-primary);
+      }
+      .stat-box {
+        position: absolute;
+        bottom: -30px;
+        left: -30px;
+        background: var(--navy-deep);
+        padding: 30px;
+        color: var(--gold-primary);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--gold-primary);
+      }
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        font-family: "Cinzel", serif;
+        display: block;
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #fff;
+      }
+
+      /* --- 6. THE ZONES (MÔ HÌNH KHÔNG GIAN) --- */
+      .zones {
+        padding: 100px 0;
+        background-color: var(--paper-bg);
+      }
+      .zone-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .zone-card {
+        background: #fff;
+        padding: 40px 30px;
+        text-align: center;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: 0.4s;
+        position: relative;
+        overflow: hidden;
+      }
+      .zone-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--gold-primary);
+      }
+
+      .zone-icon {
+        font-size: 3rem;
+        color: var(--green-jade);
+        margin-bottom: 25px;
+      }
+      .zone-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: var(--navy-deep);
+      }
+      .zone-card p {
+        font-size: 0.95rem;
+        color: #666;
+      }
+      .zone-deco {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: var(--gold-primary);
+      }
+
+      /* --- 7. GAME LIBRARY (Grid) --- */
+      .games-section {
+        padding: 100px 0;
+        background: var(--navy-deep);
+        color: #fff;
+      }
+      .games-section h2 {
+        color: var(--gold-primary);
+      }
+
+      .game-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 30px;
+      }
+
+      .game-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(197, 160, 89, 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .game-card:hover {
+        border-color: var(--gold-primary);
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-5px);
+      }
+
+      .game-thumb {
+        height: 180px;
+        width: 100%;
+        object-fit: cover;
+        filter: sepia(30%);
+        transition: 0.3s;
+      }
+      .game-card:hover .game-thumb {
+        filter: sepia(0);
+      }
+
+      .game-info {
+        padding: 20px;
+        text-align: center;
+      }
+      .game-cat {
+        font-size: 0.7rem;
+        color: var(--gold-primary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .game-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 15px;
+      }
+      .btn-view {
+        font-size: 0.8rem;
+        color: #aaa;
+        text-decoration: underline;
+        transition: 0.3s;
+      }
+      .game-card:hover .btn-view {
+        color: var(--gold-primary);
+      }
+
+      /* --- 8. SIGNATURE MENU --- */
+      .menu-section {
+        padding: 100px 0;
+        background: #fff;
+      }
+      .menu-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+      }
+
+      .menu-col h3 {
+        font-size: 1.8rem;
+        color: var(--red-lacquer);
+        margin-bottom: 30px;
+        border-bottom: 2px solid var(--gold-primary);
+        padding-bottom: 10px;
+        display: inline-block;
+      }
+
+      .menu-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        border-bottom: 1px dashed #ddd;
+        padding-bottom: 15px;
+      }
+      .item-info h4 {
+        font-size: 1.1rem;
+        color: var(--navy-deep);
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      .item-desc {
+        font-size: 0.9rem;
+        color: #666;
+        font-style: italic;
+      }
+      .item-price {
+        font-weight: 700;
+        color: var(--gold-primary);
+        font-size: 1.1rem;
+        font-family: "Cinzel", serif;
+      }
+
+      /* --- 9. MODAL --- */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(11, 19, 33, 0.9);
+        z-index: 2000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: 0.4s;
+      }
+      .modal-overlay.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .modal-box {
+        background: #fff;
+        width: 900px;
+        max-width: 90%;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        box-shadow: 0 0 50px rgba(197, 160, 89, 0.4);
+        border: 2px solid var(--gold-primary);
+        transform: translateY(50px);
+        transition: 0.4s;
+        position: relative;
+      }
+      .modal-overlay.active .modal-box {
+        transform: translateY(0);
+      }
+
+      .modal-img-area {
+        background-size: cover;
+        background-position: center;
+        min-height: 400px;
+      }
+      .modal-content {
+        padding: 40px;
+        position: relative;
+      }
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--navy-deep);
+        z-index: 10;
+      }
+      .close-modal:hover {
+        color: var(--red-lacquer);
+      }
+
+      .qr-block {
+        background: var(--paper-bg);
+        padding: 15px;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 30px;
+        border-radius: 4px;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--navy-deep);
+        color: #888;
+        padding: 60px 0 20px;
+        text-align: center;
+        border-top: 5px solid var(--red-lacquer);
+      }
+      .footer-logo {
+        font-size: 2rem;
+        color: var(--gold-primary);
+        font-family: "Cinzel", serif;
+        margin-bottom: 20px;
+        display: block;
+      }
+      .social-icons a {
+        color: #fff;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: 0.3s;
+      }
+      .social-icons a:hover {
+        color: var(--gold-primary);
+      }
+
+      @media (max-width: 768px) {
+        .phil-grid,
+        .menu-wrapper,
+        .modal-box {
+          grid-template-columns: 1fr;
+        }
+        .zone-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero h2 {
+          font-size: 2.5rem;
+        }
+        .modal-img-area {
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-inner">
+        <a href="#" class="logo-area">
+          <img
+            src="https://via.placeholder.com/100x100.png?text=LOGO"
+            alt="Heritage Logo"
+            class="main-logo"
+          />
+          <div class="brand-text">
+            <h1>VỀ QUÁN</h1>
+            <span>THE HERITAGE HUB</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="#about" class="active">Giới Thiệu</a>
+          <a href="#zones">Không Gian</a>
+          <a href="#games">Kho Tàng</a>
+          <a href="#menu">Thực Đơn</a>
+          <a href="#contact">Liên Hệ</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h2>
+          Đánh Thức Di Sản <br />
+          <span class="text-gold">Chạm Vào Tương Lai</span>
+        </h2>
+        <p>
+          "Nơi những trò chơi dân gian ngàn năm tuổi sống lại bằng công nghệ số giữa lòng Thủ Đức"
+        </p>
+        <a href="#games" class="btn-gold">Khám Phá Ngay</a>
+      </div>
+    </section>
+
+    <section id="about" class="philosophy">
+      <div class="container">
+        <div class="phil-grid">
+          <div class="phil-content">
+            <span class="font-serif text-gold" style="font-size: 1.2rem"
+              >Câu chuyện của chúng tôi</span
+            >
+            <h3>Neo-Traditional Philosophy</h3>
+            <p>
+              Tại <b>Về Quán</b>, chúng tôi không "trưng bày" văn hóa, chúng tôi "sống" cùng nó. Dự
+              án là sự phản kháng lại nhịp sống hối hả của kỷ nguyên số bằng chính... công nghệ.
+            </p>
+            <p>
+              Chúng tôi tái sinh những trò chơi dân gian như Ô Ăn Quan, Cờ Gánh, Bầu Cua dưới hình
+              hài của những tác phẩm nghệ thuật thủ công (gỗ, đá, gốm), kết hợp với hướng dẫn tương
+              tác AR/QR Code để xóa bỏ rào cản thế hệ.
+            </p>
+            <p>
+              Đây không chỉ là quán Cafe. Đây là
+              <b>Thánh địa của sự kết nối thực (Real Connection)</b>.
+            </p>
+          </div>
+          <div class="phil-img-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?q=80&w=2069&auto=format&fit=crop"
+              class="phil-img"
+              alt="Không gian quán"
+            />
+            <div class="stat-box">
+              <span class="stat-number">20+</span>
+              <span class="stat-label">Bộ Game Thủ Công Độc Bản</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="zones" class="zones">
+      <div class="container">
+        <div class="section-header">
+          <h2>Không Gian Đa Chiều</h2>
+          <span class="sub-title">Một điểm đến - Ba trải nghiệm</span>
+          <div class="divider-icon">❖</div>
+        </div>
+
+        <div class="zone-grid">
+          <div class="zone-card">
+            <div class="zone-deco"></div>
+            <div class="zone-icon"><i class="fa-solid fa-chess-rook"></i></div>
+            <h3>The Zen Zone (Tĩnh)</h3>
+            <p>
+              Dành cho Cờ Tướng, Cờ Vây và Cờ Gánh. Không gian thiền định với hương trầm, bàn cờ gốm
+              sứ và nhạc Lo-fi Trịnh Công Sơn. Nơi đấu trí trong sự tĩnh lặng.
+            </p>
+          </div>
+          <div class="zone-card">
+            <div class="zone-deco"></div>
+            <div class="zone-icon"><i class="fa-solid fa-users"></i></div>
+            <h3>The Battle Zone (Động)</h3>
+            <p>
+              Khu vực sôi động cho Ô Ăn Quan, Lô Tô, Bầu Cua. Thiết kế ghế ngồi bệt quây quần (kiểu
+              chiếu sân đình cách điệu), phù hợp cho nhóm bạn trẻ "cháy" hết mình.
+            </p>
+          </div>
+          <div class="zone-card">
+            <div class="zone-deco"></div>
+            <div class="zone-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <h3>Heritage Lab (Sáng Tạo)</h3>
+            <p>
+              Góc trải nghiệm công nghệ. Quét AR xem lịch sử trò chơi, Workshop làm đồ chơi thủ
+              công, và không gian làm việc (Co-working) yên tĩnh buổi sáng.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="games" class="games-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Thư Viện Di Sản Số</h2>
+          <span class="sub-title" style="color: #ccc">Chạm vào là hiểu - Quét là chơi</span>
+          <div class="divider-icon" style="color: var(--gold-primary)">❖</div>
+        </div>
+
+        <div class="game-grid">
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Ô Ăn Quan (Mandarin Square)"
+            data-img="https://images.unsplash.com/photo-1630922718047-497127608e8b?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Trò chơi chiến thuật kinh điển. Phiên bản Về Quán sử dụng bàn gỗ Hương nguyên khối và quân đá thạch anh. Rèn luyện tư duy toán học và quản trị tài nguyên."
+          >
+            <img
+              src="https://images.unsplash.com/photo-1630922718047-497127608e8b?q=80&w=2070&auto=format&fit=crop"
+              class="game-thumb"
+            />
+            <div class="game-info">
+              <span class="game-cat">Chiến thuật</span>
+              <div class="game-title">Ô Ăn Quan</div>
+              <span class="btn-view">Xem chi tiết</span>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Cờ Gánh (Vietnamese Chess)"
+            data-img="https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=2070&auto=format&fit=crop"
+            data-desc="Đặc sản văn hóa Quảng Nam. Lối chơi 'Gánh' và 'Vây' độc đáo đòi hỏi sự linh hoạt tuyệt vời. Bàn cờ được vẽ tay trên gốm nung."
+          >
+            <img
+              src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=2070&auto=format&fit=crop"
+              class="game-thumb"
+            />
+            <div class="game-info">
+              <span class="game-cat">Trí Tuệ</span>
+              <div class="game-title">Cờ Gánh</div>
+              <span class="btn-view">Xem chi tiết</span>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Bầu Cua Tôm Cá Nghệ Thuật"
+            data-img="https://images.unsplash.com/photo-1610890716271-e21f45938739?q=80&w=1780&auto=format&fit=crop"
+            data-desc="Tác phẩm nghệ thuật trên giấy Dó. Hình ảnh linh vật được vẽ cách điệu hiện đại. Trò chơi mang lại không khí lễ hội và sự may mắn."
+          >
+            <img
+              src="https://images.unsplash.com/photo-1610890716271-e21f45938739?q=80&w=1780&auto=format&fit=crop"
+              class="game-thumb"
+            />
+            <div class="game-info">
+              <span class="game-cat">May Mắn</span>
+              <div class="game-title">Bầu Cua Tôm Cá</div>
+              <span class="btn-view">Xem chi tiết</span>
+            </div>
+          </div>
+
+          <div
+            class="game-card"
+            onclick="openModal(this)"
+            data-title="Tam Cúc (Traditional Card)"
+            data-img="https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?q=80&w=2068&auto=format&fit=crop"
+            data-desc="Bộ bài cổ truyền của Bắc Bộ. Luật chơi thâm thúy, nhẹ nhàng, thích hợp cho nhóm bạn 4 người đàm đạo bên tách trà."
+          >
+            <img
+              src="https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?q=80&w=2068&auto=format&fit=crop"
+              class="game-thumb"
+            />
+            <div class="game-info">
+              <span class="game-cat">Bài Lá</span>
+              <div class="game-title">Tam Cúc</div>
+              <span class="btn-view">Xem chi tiết</span>
+            </div>
+          </div>
+
+          <div class="game-card">
+            <img src="https://via.placeholder.com/300x200?text=GAME+5" class="game-thumb" />
+            <div class="game-info"><div class="game-title">Lô Tô Sài Gòn</div></div>
+          </div>
+          <div class="game-card">
+            <img src="https://via.placeholder.com/300x200?text=GAME+6" class="game-thumb" />
+            <div class="game-info"><div class="game-title">Cờ Vây</div></div>
+          </div>
+          <div class="game-card">
+            <img src="https://via.placeholder.com/300x200?text=GAME+7" class="game-thumb" />
+            <div class="game-info"><div class="game-title">Đá Cầu Kiểng</div></div>
+          </div>
+          <div class="game-card">
+            <img src="https://via.placeholder.com/300x200?text=GAME+8" class="game-thumb" />
+            <div class="game-info"><div class="game-title">Mạt Chược</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Tinh Hoa Hương Vị</h2>
+          <span class="sub-title">Sự kết hợp giữa nông sản Việt & Kỹ thuật Modern Brewing</span>
+          <div class="divider-icon">❖</div>
+        </div>
+
+        <div class="menu-wrapper">
+          <div class="menu-col">
+            <h3>Signature Drinks</h3>
+
+            <div class="menu-item">
+              <div class="item-info">
+                <h4>Cafe Muối Cố Đô (Hue Salt Coffee)</h4>
+                <div class="item-desc">
+                  Cafe Robusta Cầu Đất, Kem muối hồng Himalaya, Phin truyền thống.
+                </div>
+              </div>
+              <div class="item-price">45.000</div>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-info">
+                <h4>Trà Sen Hoàng Cung (Royal Lotus Tea)</h4>
+                <div class="item-desc">
+                  Trà sen Tây Hồ ủ lạnh (Cold brew), Hạt sen ninh nhừ, Vải thiều.
+                </div>
+              </div>
+              <div class="item-price">55.000</div>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-info">
+                <h4>Di Sản Nhiệt Đới (Tropical Heritage)</h4>
+                <div class="item-desc">Kombucha ủ thủ công, Dứa mật, Gừng sẻ, Húng quế.</div>
+              </div>
+              <div class="item-price">50.000</div>
+            </div>
+          </div>
+
+          <div class="menu-col">
+            <h3>Traditional Snacks</h3>
+
+            <div class="menu-item">
+              <div class="item-info">
+                <h4>Combo "Tuổi Thơ"</h4>
+                <div class="item-desc">Mứt gừng, Kẹo lạc, Bánh đậu xanh Rồng Vàng.</div>
+              </div>
+              <div class="item-price">35.000</div>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-info">
+                <h4>Hạt Sen Sấy & Trà Mạn</h4>
+                <div class="item-desc">Set trà đạo mini dành cho bàn chơi Cờ Tướng.</div>
+              </div>
+              <div class="item-price">65.000</div>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-info">
+                <h4>Bánh Mì Que Hải Phòng</h4>
+                <div class="item-desc">Pate gan gà thủ công, tương ớt chí chương.</div>
+              </div>
+              <div class="item-price">15.000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="container">
+        <span class="footer-logo">THE HERITAGE HUB</span>
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p style="margin: 20px 0">📍 Làng Đại Học Quốc Gia, TP. Thủ Đức, TP.HCM</p>
+        <p>Hotline: <span class="text-gold">0909.HERITAGE</span> | Email: info@vequan.vn</p>
+        <div
+          style="margin-top: 40px; font-size: 0.8rem; border-top: 1px solid #333; padding-top: 20px"
+        >
+          © 2025 VỀ QUÁN - Dự án Khởi nghiệp Sinh viên UFM
+        </div>
+      </div>
+    </footer>
+
+    <div class="modal-overlay" id="gameModal" onclick="closeModal(event)">
+      <div class="modal-box" onclick="event.stopPropagation()">
+        <span class="close-modal" onclick="directClose()">&times;</span>
+        <div class="modal-img-area" id="modalImg"></div>
+        <div class="modal-content">
+          <h2
+            id="modalTitle"
+            style="
+              color: var(--navy-deep);
+              border-bottom: 2px solid var(--gold-primary);
+              padding-bottom: 10px;
+              margin-bottom: 20px;
+            "
+          ></h2>
+          <p id="modalDesc" style="color: #666; margin-bottom: 30px"></p>
+
+          <div class="qr-block">
+            <img id="modalQR" src="" alt="QR" style="width: 80px; height: 80px" />
+            <div>
+              <h4 style="color: var(--red-lacquer); margin-bottom: 5px">HƯỚNG DẪN 60 GIÂY</h4>
+              <p style="font-size: 0.8rem">
+                Quét mã để xem video luật chơi & mẹo thắng từ chuyên gia.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openModal(element) {
+        const title = element.getAttribute("data-title");
+        const desc = element.getAttribute("data-desc");
+        const imgUrl = element.getAttribute("data-img");
+
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalDesc").innerText = desc;
+        document.getElementById("modalImg").style.backgroundImage = "url('" + imgUrl + "')";
+
+        // Tạo QR giả lập dẫn tới Google Search về game đó
+        const qrData =
+          "https://www.google.com/search?q=huong+dan+choi+" + encodeURIComponent(title);
+        document.getElementById("modalQR").src =
+          "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrData;
+
+        document.getElementById("gameModal").classList.add("active");
+      }
+
+      function closeModal(event) {
+        if (event.target.classList.contains("modal-overlay")) {
+          document.getElementById("gameModal").classList.remove("active");
+        }
+      }
+      function directClose() {
+        document.getElementById("gameModal").classList.remove("active");
+      }
+    </script>
+  </body>
+</html>

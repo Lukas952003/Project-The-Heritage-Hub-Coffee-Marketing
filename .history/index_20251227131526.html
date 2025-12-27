@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ | THE HERITAGE HUB</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* CSS Riêng cho trang chủ để tạo layout đẹp hơn */
+
+      /* 1. About Teaser */
+      .about-teaser {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        padding: 100px 0;
+      }
+      .about-text {
+        flex: 1;
+      }
+      .about-img {
+        flex: 1;
+        position: relative;
+      }
+      .about-img img {
+        width: 100%;
+        border-radius: 4px;
+        box-shadow: 20px 20px 0 var(--navy);
+      }
+
+      /* 2. Core Values (Icon Box) */
+      .values-section {
+        background-color: var(--navy);
+        color: #fff;
+        padding: 80px 0;
+      }
+      .value-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        text-align: center;
+      }
+      .value-box {
+        padding: 30px;
+        border: 1px solid rgba(197, 160, 89, 0.3);
+        transition: 0.3s;
+      }
+      .value-box:hover {
+        border-color: var(--gold);
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateY(-10px);
+      }
+      .value-icon {
+        font-size: 3rem;
+        color: var(--gold);
+        margin-bottom: 20px;
+      }
+
+      /* 3. Space/Zone Preview */
+      .zone-preview {
+        padding: 100px 0;
+      }
+      .zone-flex {
+        display: flex;
+        gap: 20px;
+        margin-top: 50px;
+      }
+      .zone-item {
+        flex: 1;
+        height: 400px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+        transition: 0.4s;
+        cursor: pointer;
+      }
+      .zone-item:hover {
+        flex: 2;
+      } /* Hiệu ứng Accordion mở rộng khi hover */
+      .zone-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        color: #fff;
+        transform: translateY(20px);
+        transition: 0.3s;
+      }
+      .zone-item:hover .zone-overlay {
+        transform: translateY(0);
+      }
+
+      /* 4. Menu Highlight (Parallax) */
+      .menu-highlight {
+        background-image: url("https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1887&auto=format&fit=crop");
+        background-attachment: fixed;
+        background-size: cover;
+        padding: 100px 0;
+        position: relative;
+      }
+      .menu-highlight::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .menu-carousel {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+      }
+      .drink-card {
+        background: #fff;
+        padding: 20px;
+        text-align: center;
+        border-radius: 4px;
+        width: 300px;
+      }
+      .drink-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+
+      /* 5. Events */
+      .event-section {
+        padding: 80px 0;
+        background: #fff;
+      }
+      .event-row {
+        display: flex;
+        border-bottom: 1px solid #eee;
+        padding: 30px 0;
+        align-items: center;
+        transition: 0.3s;
+      }
+      .event-row:hover {
+        background: var(--paper);
+        padding-left: 20px;
+      }
+      .date-box {
+        background: var(--red);
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+        margin-right: 30px;
+        min-width: 80px;
+        font-family: "Cinzel", serif;
+      }
+      .date-day {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: block;
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .about-teaser,
+        .value-grid,
+        .menu-carousel,
+        .zone-flex {
+          flex-direction: column;
+        }
+        .zone-item {
+          height: 250px;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-inner">
+        <a href="index.html" class="logo-area">
+          <img
+            src="https://via.placeholder.com/60x60.png/C5A059/000000?text=LOGO"
+            alt="Heritage Logo"
+            class="logo-img"
+          />
+          <div class="brand-text">
+            <h1>VỀ QUÁN</h1>
+            <span>THE HERITAGE HUB</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html" class="active">Trang Chủ</a>
+          <a href="about.html">Câu Chuyện</a>
+          <a href="games.html">Kho Tàng Game</a>
+          <a href="menu.html">Thực Đơn</a>
+        </nav>
+      </div>
+    </header>
+
+    <section
+      class="page-hero"
+      style="
+        height: 100vh;
+        background-image: url('https://images.unsplash.com/photo-1596627627832-75390eb3e3a7?q=80&w=2070&auto=format&fit=crop');
+      "
+    >
+      <div style="position: relative; z-index: 2; text-align: center; color: #fff; padding: 0 20px">
+        <p
+          style="
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-style: italic;
+          "
+        >
+          Chào mừng đến với không gian Neo-Traditional
+        </p>
+        <h2
+          style="
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+          "
+        >
+          DI SẢN SỐNG <br />
+          <span class="text-gold">GIỮA LÒNG THỦ ĐỨC</span>
+        </h2>
+        <p
+          style="
+            font-size: 1.2rem;
+            color: #eee;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        >
+          Nơi những trò chơi dân gian ngàn năm tuổi sống lại bằng công nghệ số. Uống một tách trà
+          sen, chơi một ván Ô Ăn Quan và tìm lại sự kết nối thực sự.
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center">
+          <a href="games.html" class="btn-gold" style="background: var(--gold); color: #fff"
+            >Khám Phá Game</a
+          >
+          <a href="menu.html" class="btn-gold">Xem Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container about-teaser">
+      <div class="about-text">
+        <span class="sub-title">Chúng tôi là ai?</span>
+        <h2 style="font-size: 2.5rem; margin: 15px 0 30px; color: var(--navy)">
+          SỰ HỒI SINH CỦA <br /><span class="text-red">VĂN HÓA DÂN GIAN</span>
+        </h2>
+        <p style="color: #555; margin-bottom: 20px; text-align: justify">
+          Giữa nhịp sống hối hả của kỷ nguyên 4.0 tại Làng Đại Học, <b>VỀ QUÁN</b> ra đời như một
+          điểm chạm văn hóa. Chúng tôi không chỉ bán cà phê, chúng tôi kể lại câu chuyện của ông cha
+          bằng ngôn ngữ của người trẻ.
+        </p>
+        <p style="color: #555; margin-bottom: 30px; text-align: justify">
+          Bạn quên luật chơi Ô Ăn Quan? Đừng lo, mã QR Code trên mỗi bàn cờ sẽ hướng dẫn bạn trong
+          60 giây. Bạn muốn không gian yên tĩnh để làm việc? Khu vực Heritage Lab luôn sẵn sàng.
+        </p>
+        <a
+          href="about.html"
+          style="color: var(--navy); font-weight: 700; text-decoration: underline"
+          >Đọc câu chuyện đầy đủ &rarr;</a
+        >
+      </div>
+      <div class="about-img">
+        <img
+          src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?q=80&w=2069&auto=format&fit=crop"
+          alt="Không gian quán"
+        />
+      </div>
+    </section>
+
+    <section class="values-section">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 60px">
+          <h2 style="color: #fff">TẠI SAO CHỌN VỀ QUÁN?</h2>
+          <div style="width: 50px; height: 3px; background: var(--gold); margin: 20px auto"></div>
+        </div>
+
+        <div class="value-grid">
+          <div class="value-box">
+            <i class="fa-solid fa-chess-rook value-icon"></i>
+            <h3 style="color: #fff; margin-bottom: 15px">KHO TÀNG 20+ GAME</h3>
+            <p style="color: #ccc; font-size: 0.9rem">
+              Sở hữu bộ sưu tập boardgame dân gian thủ công lớn nhất Thủ Đức. Từ Cờ Tướng, Cờ Gánh
+              đến Bầu Cua nghệ thuật.
+            </p>
+          </div>
+          <div class="value-box">
+            <i class="fa-solid fa-mobile-screen-button value-icon"></i>
+            <h3 style="color: #fff; margin-bottom: 15px">TRẢI NGHIỆM SỐ HÓA</h3>
+            <p style="color: #ccc; font-size: 0.9rem">
+              Kết hợp AR và QR Code hướng dẫn luật chơi. Xóa bỏ rào cản thế hệ, giúp bạn nhập cuộc
+              chỉ sau 1 phút.
+            </p>
+          </div>
+          <div class="value-box">
+            <i class="fa-solid fa-mug-hot value-icon"></i>
+            <h3 style="color: #fff; margin-bottom: 15px">HƯƠNG VỊ BẢN ĐỊA</h3>
+            <p style="color: #ccc; font-size: 0.9rem">
+              Thưởng thức Cafe Cầu Đất, Trà Sen Tây Hồ và các món nước "chữa lành" trong không gian
+              Indochine.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="zone-preview container">
+      <div style="text-align: center">
+        <span class="sub-title">Mô hình 3 không gian</span>
+        <h2 style="color: var(--navy); margin-top: 10px">BẠN THUỘC VỀ "VÙNG" NÀO?</h2>
+      </div>
+
+      <div class="zone-flex">
+        <div
+          class="zone-item"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop');
+          "
+        >
+          <div class="zone-overlay">
+            <h3 style="color: var(--gold)">ZEN ZONE</h3>
+            <p>Khu vực Tĩnh lặng. Dành cho Cờ Tướng, Cờ Vây và làm việc.</p>
+          </div>
+        </div>
+        <div
+          class="zone-item"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop');
+          "
+        >
+          <div class="zone-overlay">
+            <h3 style="color: var(--red)">BATTLE ZONE</h3>
+            <p>Khu vực Sôi động. Dành cho nhóm bạn chơi Ô Ăn Quan, Lô Tô.</p>
+          </div>
+        </div>
+        <div
+          class="zone-item"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop');
+          "
+        >
+          <div class="zone-overlay">
+            <h3 style="color: #fff">HERITAGE LAB</h3>
+            <p>Khu vực Sáng tạo. Workshop thủ công & Trải nghiệm công nghệ.</p>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 40px">
+        <a href="about.html" class="btn-gold">Xem chi tiết không gian</a>
+      </div>
+    </section>
+
+    <section class="menu-highlight">
+      <div class="container">
+        <h2
+          style="
+            text-align: center;
+            color: #fff;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+          "
+        >
+          THỰC ĐƠN ĐỀ XUẤT
+        </h2>
+
+        <div class="menu-carousel">
+          <div class="drink-card">
+            <img
+              src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1887&auto=format&fit=crop"
+              class="drink-img"
+            />
+            <h4 style="color: var(--navy)">Cafe Muối Cố Đô</h4>
+            <p style="color: #666; font-size: 0.9rem">Vị mặn kem muối hòa quyện cafe đậm đà.</p>
+            <span style="color: var(--red); font-weight: bold; display: block; margin-top: 10px"
+              >45.000đ</span
+            >
+          </div>
+          <div class="drink-card">
+            <img
+              src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=1964&auto=format&fit=crop"
+              class="drink-img"
+            />
+            <h4 style="color: var(--navy)">Trà Sen Hoàng Cung</h4>
+            <p style="color: #666; font-size: 0.9rem">Thanh mát, giải nhiệt với hạt sen bùi bùi.</p>
+            <span style="color: var(--red); font-weight: bold; display: block; margin-top: 10px"
+              >55.000đ</span
+            >
+          </div>
+          <div class="drink-card">
+            <img
+              src="https://images.unsplash.com/photo-1623934096053-1594e2e25d2c?q=80&w=1887&auto=format&fit=crop"
+              class="drink-img"
+            />
+            <h4 style="color: var(--navy)">Combo Tuổi Thơ</h4>
+            <p style="color: #666; font-size: 0.9rem">Bánh đậu xanh, kẹo lạc, trà nóng.</p>
+            <span style="color: var(--red); font-weight: bold; display: block; margin-top: 10px"
+              >35.000đ</span
+            >
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; position: relative; z-index: 2">
+          <a
+            href="menu.html"
+            class="btn-gold"
+            style="background: rgba(0, 0, 0, 0.5); border-color: #fff; color: #fff"
+            >Xem Toàn Bộ Menu</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="event-section">
+      <div class="container" style="max-width: 900px">
+        <div style="text-align: center; margin-bottom: 50px">
+          <span class="sub-title">Nhịp sống Về Quán</span>
+          <h2 style="color: var(--navy)">SỰ KIỆN SẮP TỚI</h2>
+        </div>
+
+        <div class="event-row">
+          <div class="date-box">
+            <span class="date-day">15</span>
+            <span>TH06</span>
+          </div>
+          <div class="event-info">
+            <h3 style="margin-bottom: 5px">GRAND OPENING - KHAI TRƯƠNG HỒNG PHÁT</h3>
+            <p style="color: #666">
+              Ra mắt không gian Heritage Hub tại Thủ Đức. Giảm giá 20% toàn bộ menu.
+            </p>
+            <span style="color: var(--gold); font-size: 0.8rem; font-weight: 700"
+              >8:00 AM - 10:00 PM</span
+            >
+          </div>
+        </div>
+
+        <div class="event-row">
+          <div class="date-box" style="background: var(--navy)">
+            <span class="date-day">20</span>
+            <span>TH06</span>
+          </div>
+          <div class="event-info">
+            <h3 style="margin-bottom: 5px">GIẢI ĐẤU CỜ TƯỚNG MỞ RỘNG</h3>
+            <p style="color: #666">
+              Giao lưu cùng CLB Cờ Tướng ĐH Quốc Gia. Phần thưởng tiền mặt hấp dẫn.
+            </p>
+            <span style="color: var(--gold); font-size: 0.8rem; font-weight: 700"
+              >14:00 PM - 17:00 PM</span
+            >
+          </div>
+        </div>
+
+        <div class="event-row">
+          <div class="date-box" style="background: var(--gold)">
+            <span class="date-day">25</span>
+            <span>TH06</span>
+          </div>
+          <div class="event-info">
+            <h3 style="margin-bottom: 5px">WORKSHOP: VẼ MẶT NẠ GIẤY BỒI</h3>
+            <p style="color: #666">Trải nghiệm tự tay làm mặt nạ trung thu truyền thống.</p>
+            <span style="color: var(--gold); font-size: 0.8rem; font-weight: 700"
+              >09:00 AM - 11:30 AM</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            text-align: left;
+            margin-bottom: 50px;
+          "
+        >
+          <div>
+            <h3 style="color: var(--gold); margin-bottom: 20px">VỀ QUÁN</h3>
+            <p style="margin-bottom: 10px">
+              Dự án khởi nghiệp sinh viên UFM. Nơi lưu giữ và lan tỏa giá trị văn hóa Việt qua lăng
+              kính hiện đại.
+            </p>
+            <div style="margin-top: 20px">
+              <i
+                class="fa-brands fa-facebook"
+                style="font-size: 1.5rem; margin-right: 15px; color: #fff"
+              ></i>
+              <i
+                class="fa-brands fa-tiktok"
+                style="font-size: 1.5rem; margin-right: 15px; color: #fff"
+              ></i>
+              <i class="fa-brands fa-instagram" style="font-size: 1.5rem; color: #fff"></i>
+            </div>
+          </div>
+          <div>
+            <h3 style="color: var(--gold); margin-bottom: 20px">LIÊN HỆ</h3>
+            <p>
+              <i class="fa-solid fa-location-dot" style="margin-right: 10px"></i> Làng Đại Học Quốc
+              Gia, TP. Thủ Đức
+            </p>
+            <p>
+              <i class="fa-solid fa-phone" style="margin-right: 10px"></i> 0909.HERITAGE
+              (0909.123.456)
+            </p>
+            <p><i class="fa-solid fa-envelope" style="margin-right: 10px"></i> hello@vequan.vn</p>
+          </div>
+          <div>
+            <h3 style="color: var(--gold); margin-bottom: 20px">GIỜ MỞ CỬA</h3>
+            <p>Thứ 2 - Thứ 6: 07:00 - 22:00</p>
+            <p>Thứ 7 - Chủ Nhật: 08:00 - 23:00</p>
+            <p style="color: var(--red); font-weight: bold; margin-top: 10px">
+              *Mở xuyên Tết Âm Lịch
+            </p>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid #333; padding-top: 20px">
+          <p>© 2025 THE HERITAGE HUB. Designed with passion.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

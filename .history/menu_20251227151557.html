@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Thực Đơn | THE HERITAGE HUB - SÀI GÒN</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. CORE STYLES (ĐỒNG BỘ) --- */
+      :root {
+        --wood-primary: #5d4037;
+        --wood-dark: #2d1e18;
+        --jade: #006b54;
+        --jade-light: #2e8b57;
+        --gold: #c5a059;
+        --gold-glow: #ffd700;
+        --red-seal: #8b0000;
+        --cream: #f9f7f2;
+        --text: #2c2c2c;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--cream);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235D4037' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cormorant Garamond", serif;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--wood-dark);
+      }
+      .serif-italic {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+      }
+
+      /* Container có padding an toàn để tránh dính mép */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 25px;
+      }
+      .section-padding {
+        padding: 80px 0;
+      }
+
+      /* HEADER */
+      header {
+        background: linear-gradient(to right, var(--wood-dark), #4e342e);
+        border-bottom: 3px solid var(--gold);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      }
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo-area {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .custom-logo {
+        height: 90px;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.5));
+      }
+      .brand-text h1 {
+        color: var(--gold);
+        margin: 0;
+        line-height: 1;
+        font-size: 1.4rem;
+      }
+      .brand-text span {
+        color: #d7ccc8;
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        display: block;
+        font-family: "Montserrat", sans-serif;
+      }
+      .nav-links a {
+        color: #efebe9;
+        text-decoration: none;
+        margin-left: 25px;
+        font-weight: 500;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        transition: 0.3s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--gold);
+      }
+      .btn-nav {
+        border: 1px solid var(--gold);
+        padding: 8px 20px;
+        border-radius: 2px;
+        color: var(--gold) !important;
+      }
+      .btn-nav:hover {
+        background: var(--gold);
+        color: var(--wood-dark) !important;
+      }
+
+      /* --- HERO SUBPAGE --- */
+      .page-hero {
+        height: 50vh;
+        background: linear-gradient(rgba(45, 30, 24, 0.6), rgba(45, 30, 24, 0.6)),
+          url("https://images.unsplash.com/photo-1544259329-3733a72944b2?q=80&w=2070&auto=format&fit=crop");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 20px;
+      }
+      .page-hero h2 {
+        font-size: 4rem;
+        color: #fff;
+        text-shadow: 0 5px 20px #000;
+        margin-bottom: 15px;
+        line-height: 1.1;
+      }
+      .breadcrumb {
+        color: var(--gold);
+        font-family: "Montserrat";
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border: 1px solid var(--gold);
+        padding: 5px 15px;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      /* --- SECTION DECORATION --- */
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 2;
+      }
+      .section-title span {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-style: italic;
+      }
+      .section-title h2 {
+        font-size: 2.8rem;
+        margin-top: 5px;
+        color: var(--wood-dark);
+      }
+      .divider-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--jade);
+        margin-top: 10px;
+      }
+      .divider-icon::before,
+      .divider-icon::after {
+        content: "";
+        width: 60px;
+        height: 1px;
+        background: var(--gold);
+        margin: 0 15px;
+      }
+
+      /* --- 1. SPOTLIGHT SECTION (BEST SELLERS) --- */
+      .spotlight-section {
+        background-color: #fff;
+        position: relative;
+      }
+      .spotlight-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+      .spotlight-card {
+        text-align: center;
+        position: relative;
+        transition: 0.4s;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .spotlight-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-color: var(--gold);
+      }
+
+      .spot-img-box {
+        position: relative;
+        overflow: hidden;
+        height: 250px; /* Cố định chiều cao ảnh */
+        border-bottom: 3px solid var(--gold);
+      }
+      .spot-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+      .spotlight-card:hover .spot-img {
+        transform: scale(1.1);
+      }
+
+      .badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--red-seal);
+        color: #fff;
+        padding: 5px 15px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: 1px solid var(--gold);
+        z-index: 10;
+      }
+
+      .spot-info {
+        padding: 20px;
+        background: var(--wood-dark);
+        color: #fff;
+      }
+      .spot-name {
+        color: var(--gold);
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+      }
+      .spot-price {
+        font-family: "Cormorant Garamond";
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      /* --- 2. MAIN MENU (PAPER STYLE) --- */
+      .menu-section {
+        background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+        background-color: #fffdf5;
+      }
+
+      .menu-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        position: relative;
+      }
+      /* Đường kẻ giữa trang sách (chỉ PC) */
+      .menu-layout::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+        transform: translateX(-50%);
+      }
+
+      .menu-category-title {
+        font-size: 2rem;
+        color: var(--wood-primary);
+        margin-bottom: 30px;
+        border-bottom: 2px solid var(--jade);
+        display: inline-block;
+        padding-bottom: 5px;
+      }
+
+      .menu-item {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px dashed rgba(197, 160, 89, 0.4);
+        transition: 0.3s;
+      }
+      .menu-item:hover {
+        transform: translateX(5px);
+      }
+
+      .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .item-name {
+        font-family: "Cormorant Garamond";
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--wood-dark);
+      }
+      .item-price {
+        font-weight: 600;
+        color: var(--red-seal);
+        font-size: 1.1rem;
+        white-space: nowrap; /* Giữ giá không bị xuống dòng */
+      }
+
+      .item-desc {
+        font-size: 0.9rem;
+        color: #666;
+        font-style: italic;
+        margin-top: 5px;
+      }
+      .item-tag {
+        font-size: 0.6rem;
+        background: var(--cream);
+        border: 1px solid var(--gold);
+        padding: 2px 6px;
+        color: var(--wood-primary);
+        margin-left: 5px;
+        vertical-align: middle;
+        text-transform: uppercase;
+      }
+
+      /* --- 3. COMBO SECTION --- */
+      .combo-section {
+        background-color: var(--wood-dark);
+        color: #fff;
+      }
+      .combo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+
+      .combo-card {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: 0.3s;
+        border-radius: 4px;
+      }
+      .combo-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--gold);
+      }
+
+      .combo-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid var(--gold);
+        flex-shrink: 0; /* Không cho ảnh bị bóp méo */
+      }
+      .combo-info h3 {
+        color: var(--gold);
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+      .combo-price {
+        font-size: 1.2rem;
+        color: var(--jade-light);
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #281a16;
+        color: #a1887f;
+        padding: 80px 0 20px;
+        border-top: 5px solid var(--jade);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+      .footer-col h4 {
+        color: #fff;
+        margin-bottom: 25px;
+        font-size: 1.2rem;
+        border-left: 3px solid var(--gold);
+        padding-left: 15px;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col li {
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+      }
+      .footer-col a {
+        color: #a1887f;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .footer-col a:hover {
+        color: var(--gold);
+        padding-left: 5px;
+      }
+
+      /* =========================================
+         MOBILE RESPONSIVE CSS (FIX LỖI VỠ)
+         ========================================= */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 20px;
+        }
+        .section-padding {
+          padding: 60px 0;
+        }
+
+        /* Header & Nav */
+        .nav-inner {
+          flex-direction: column;
+          gap: 15px;
+        }
+        .nav-links {
+          width: 100%;
+          justify-content: center;
+          gap: 10px;
+          display: flex;
+          flex-wrap: wrap;
+          margin-left: 0;
+        }
+        .nav-links a {
+          margin: 0 5px;
+          font-size: 0.85rem;
+        }
+
+        /* Hero */
+        .page-hero {
+          height: auto;
+          padding: 100px 20px 60px;
+        }
+        .page-hero h2 {
+          font-size: 2.5rem;
+        }
+
+        /* Spotlight (Chuyển thành 1 cột) */
+        .spotlight-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .spot-img-box {
+          height: 250px;
+        }
+
+        /* Main Menu (Chuyển thành 1 cột) */
+        .menu-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .menu-layout::after {
+          display: none;
+        } /* Tắt đường kẻ giữa */
+        .menu-category-title {
+          font-size: 1.8rem;
+          text-align: center;
+          display: block;
+          border-bottom: 2px solid var(--jade);
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+        }
+
+        /* Combo (Chuyển thành 1 cột & Stack dọc) */
+        .combo-grid {
+          grid-template-columns: 1fr;
+        }
+        .combo-card {
+          flex-direction: column;
+          text-align: center;
+          padding: 30px 20px;
+        }
+        .combo-img {
+          margin: 0 auto;
+        } /* Canh giữa ảnh */
+
+        /* Footer */
+        footer {
+          padding: 50px 0 20px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 30px;
+        }
+        .footer-col h4 {
+          border-left: none;
+          border-bottom: 2px solid var(--gold);
+          padding-left: 0;
+          padding-bottom: 10px;
+          display: inline-block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-inner">
+        <a href="index.html" class="logo-area">
+          <img src="./img/logo.png" alt="Logo" class="custom-logo" />
+          <div class="brand-text">
+            <h1>VỀ QUÁN</h1>
+            <span>THE HERITAGE HUB</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang Chủ</a>
+          <a href="about.html">Câu Chuyện</a>
+          <a href="games.html">Kho Tàng Game</a>
+          <a href="menu.html" class="active" style="color: var(--gold)">Thực Đơn</a>
+          <a href="contact.html" class="btn-nav">Liên Hệ</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="page-hero">
+      <div class="breadcrumb">Tinh Hoa Hương Vị</div>
+      <h2>THỰC ĐƠN DI SẢN</h2>
+      <div style="width: 100px; height: 3px; background: var(--gold); margin-top: 20px"></div>
+    </section>
+
+    <section class="section-padding spotlight-section">
+      <div class="container">
+        <div class="section-title">
+          <span>Phải Thử Một Lần</span>
+          <h2>MÓN NGON ĐẶC SẮC</h2>
+          <div class="divider-icon">✦</div>
+        </div>
+
+        <div class="spotlight-grid">
+          <div class="spotlight-card">
+            <div class="badge">Best Seller</div>
+            <div class="spot-img-box">
+              <img
+                src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop"
+                class="spot-img"
+                alt="Cafe Muối"
+              />
+            </div>
+            <div class="spot-info">
+              <h3 class="spot-name">Cafe Muối Cố Đô</h3>
+              <p style="font-size: 0.9rem; margin-bottom: 10px; color: #ccc">
+                Cafe Robusta, Kem muối hồng, Phin
+              </p>
+              <span class="spot-price">45.000 đ</span>
+            </div>
+          </div>
+          <div class="spotlight-card">
+            <div class="badge">Signature</div>
+            <div class="spot-img-box">
+              <img
+                src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=1964&auto=format&fit=crop"
+                class="spot-img"
+                alt="Trà Sen"
+              />
+            </div>
+            <div class="spot-info">
+              <h3 class="spot-name">Trà Sen Hoàng Cung</h3>
+              <p style="font-size: 0.9rem; margin-bottom: 10px; color: #ccc">
+                Trà sen Tây Hồ, Hạt sen, Vải thiều
+              </p>
+              <span class="spot-price">55.000 đ</span>
+            </div>
+          </div>
+          <div class="spotlight-card">
+            <div class="badge">New</div>
+            <div class="spot-img-box">
+              <img
+                src="https://images.unsplash.com/photo-1550955295-5d9c2f62772a?q=80&w=2070&auto=format&fit=crop"
+                class="spot-img"
+                alt="Kombucha"
+              />
+            </div>
+            <div class="spot-info">
+              <h3 class="spot-name">Kombucha Dứa Mật</h3>
+              <p style="font-size: 0.9rem; margin-bottom: 10px; color: #ccc">
+                Lên men thủ công, Gừng sẻ, Mật ong
+              </p>
+              <span class="spot-price">50.000 đ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding menu-section">
+      <div class="container">
+        <div class="menu-layout">
+          <div class="menu-col-left">
+            <h3 class="menu-category-title">
+              <i class="fa-solid fa-mug-hot" style="margin-right: 10px; color: var(--gold)"></i>Cà
+              Phê & Trà
+            </h3>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name">Bạc Xỉu Sài Gòn <span class="item-tag">Hot</span></span>
+                <span class="item-price">39.000 đ</span>
+              </div>
+              <p class="item-desc">Sữa đặc ông thọ, cafe phin đậm đặc, nhiều sữa ít cafe.</p>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name">Cafe Trứng Hà Nội</span>
+                <span class="item-price">49.000 đ</span>
+              </div>
+              <p class="item-desc">Lòng đỏ trứng gà đánh bông mịn, bột cacao, cafe nóng.</p>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name">Trà Lài Macchiato</span>
+                <span class="item-price">45.000 đ</span>
+              </div>
+              <p class="item-desc">Trà lài ủ lạnh, kem cheese mặn béo, trân châu trắng.</p>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name">Trà Gừng Mật Ong</span>
+                <span class="item-price">40.000 đ</span>
+              </div>
+              <p class="item-desc">Gừng sẻ nướng, mật ong rừng, ấm nóng giải cảm.</p>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name">Cacao Cốt Dừa</span>
+                <span class="item-price">45.000 đ</span>
+              </div>
+              <p class="item-desc">Cacao nguyên chất Daklak, cốt dừa tươi béo ngậy.</p>
+            </div>
+          </div>
+
+          <div class="menu-col-right">
+            <h3 class="menu-category-title">
+              <i class="fa-solid fa-cookie-bite" style="margin-right: 10px; color: var(--gold)"></i
+              >Bánh & Ăn Vặt
+            </h3>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name"
+                  >Combo "Tuổi Thơ" <span class="item-tag">Must Try</span></span
+                >
+                <span class="item-price">35.000 đ</span>
+              </div>
+              <p class="item-desc">Mứt gừng Huế, Kẹo lạc, Bánh đậu xanh Rồng Vàng.</p>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name">Bánh Mì Que Hải Phòng</span>
+                <span class="item-price">15.000 đ</span>
+              </div>
+              <p class="item-desc">Pate gan gà nướng thủ công, tương ớt chí chương.</p>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name">Hạt Sen Sấy & Trà Mạn</span>
+                <span class="item-price">65.000 đ</span>
+              </div>
+              <p class="item-desc">Set dành cho 2 người, thích hợp khi chơi Cờ Tướng.</p>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name">Khô Gà Lá Chanh</span>
+                <span class="item-price">30.000 đ</span>
+              </div>
+              <p class="item-desc">Gà xé cay, lá chanh thơm lừng, giòn tan.</p>
+            </div>
+
+            <div class="menu-item">
+              <div class="item-header">
+                <span class="item-name">Bánh Croissant Trứng Muối</span>
+                <span class="item-price">40.000 đ</span>
+              </div>
+              <p class="item-desc">Sự kết hợp Á-Âu, bánh sừng trâu ngàn lớp sốt trứng muối.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding combo-section">
+      <div class="container">
+        <div class="section-title">
+          <span style="color: var(--gold-shine)">Ưu đãi đặc biệt</span>
+          <h2 style="color: #fff">COMBO DI SẢN</h2>
+          <div class="divider-icon" style="color: var(--gold)">✦</div>
+        </div>
+
+        <div class="combo-grid">
+          <div class="combo-card">
+            <img
+              src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1887&auto=format&fit=crop"
+              class="combo-img"
+              alt="Combo 1"
+            />
+            <div class="combo-info">
+              <h3>COMBO ĐỘC ẨM</h3>
+              <p style="color: #ccc; font-size: 0.9rem">1 Cafe Phin Sữa Đá + 1 Bánh Mì Que</p>
+              <p style="color: #ccc; font-size: 0.9rem">Thích hợp cho buổi sáng làm việc.</p>
+              <span class="combo-price"
+                >49.000 đ
+                <span style="text-decoration: line-through; color: #777; font-size: 0.9rem"
+                  >60.000đ</span
+                ></span
+              >
+            </div>
+          </div>
+          <div class="combo-card">
+            <img
+              src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=1964&auto=format&fit=crop"
+              class="combo-img"
+              alt="Combo 2"
+            />
+            <div class="combo-info">
+              <h3>COMBO ĐỐI ẨM (2 Người)</h3>
+              <p style="color: #ccc; font-size: 0.9rem">1 Ấm Trà Sen + 1 Dĩa Hạt Sen/Mứt</p>
+              <p style="color: #ccc; font-size: 0.9rem">Lựa chọn hoàn hảo cho bàn cờ tướng.</p>
+              <span class="combo-price"
+                >99.000 đ
+                <span style="text-decoration: line-through; color: #777; font-size: 0.9rem"
+                  >120.000đ</span
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h2 style="color: var(--gold); font-family: 'Cormorant Garamond'; margin-bottom: 20px">
+              THE HERITAGE HUB
+            </h2>
+            <p>
+              Dự án khởi nghiệp sinh viên UFM. Nơi lưu giữ và lan tỏa giá trị văn hóa Việt qua lăng
+              kính hiện đại.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>THÀNH VIÊN</h4>
+            <ul>
+              <li><a href="#">Đăng ký Membership</a></li>
+              <li><a href="#">Quyền lợi hạng Gold</a></li>
+              <li><a href="#">Lịch giải đấu tuần</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>LIÊN HỆ</h4>
+            <ul>
+              <li>
+                <i class="fa-solid fa-location-dot" style="color: var(--gold); width: 20px"></i> Sài
+                Gòn, Việt Nam
+              </li>
+              <li>
+                <i class="fa-solid fa-phone" style="color: var(--gold); width: 20px"></i>
+                0909.HERITAGE
+              </li>
+              <li>
+                <i class="fa-solid fa-envelope" style="color: var(--gold); width: 20px"></i>
+                hello@vequan.vn
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          style="
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.85rem;
+          "
+        >
+          © 2025 THE HERITAGE HUB. Designed with ❤️ by UFM Students.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
