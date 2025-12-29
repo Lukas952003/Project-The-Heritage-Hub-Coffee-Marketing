@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Về Quán - Tiệm Tạp Hóa Ký Ức</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. SETUP & VARIABLES --- */
+      :root {
+        --primary: #1a5f48; /* Xanh cổ vịt đậm (Indochine Green) */
+        --secondary: #d4af37; /* Vàng đồng (Antique Gold) */
+        --bg-body: #f9f5f0; /* Màu kem giấy cũ (Old Paper) */
+        --text-main: #2c2c2c;
+        --text-sub: #666666;
+        --white: #ffffff;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      .serif-font {
+        font-family: "Playfair Display", serif;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+      ul {
+        list-style: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* --- 2. HEADER (ĐỒNG NHẤT & HIỆN ĐẠI) --- */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        transition: var(--transition);
+        background: transparent; /* Ban đầu trong suốt */
+      }
+
+      .header.scrolled {
+        background: var(--white);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        padding: 15px 50px;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--white); /* Màu trắng khi ở trên nền ảnh */
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .header.scrolled .logo {
+        color: var(--primary);
+      }
+
+      .navbar {
+        display: flex;
+        gap: 40px;
+      }
+
+      .navbar a {
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: var(--white);
+        position: relative;
+      }
+
+      .header.scrolled .navbar a {
+        color: var(--text-main);
+      }
+
+      .navbar a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--secondary);
+        transition: var(--transition);
+      }
+
+      .navbar a:hover::after,
+      .navbar a.active::after {
+        width: 100%;
+      }
+
+      .header-icons {
+        display: flex;
+        gap: 20px;
+        color: var(--white);
+        font-size: 18px;
+      }
+      .header.scrolled .header-icons {
+        color: var(--text-main);
+      }
+      .icon-item {
+        cursor: pointer;
+        position: relative;
+      }
+      .badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--secondary);
+        color: var(--white);
+        font-size: 10px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* --- 3. HERO BANNER --- */
+      .hero {
+        height: 60vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),
+          url("https://images.unsplash.com/photo-1550596334-7bb40a71b6bc?q=80&w=2070&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* Parallax effect */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        padding-top: 80px;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+      }
+      .hero-content p {
+        font-size: 1.2rem;
+        font-weight: 300;
+        max-width: 600px;
+        margin: 0 auto;
+        letter-spacing: 0.5px;
+      }
+
+      /* --- 4. SMART FILTER TABS --- */
+      .shop-container {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+      }
+
+      .filter-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        padding: 10px 25px;
+        background: transparent;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        border-radius: 50px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 14px;
+      }
+
+      .tab-btn:hover,
+      .tab-btn.active {
+        background: var(--primary);
+        color: var(--white);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(26, 95, 72, 0.3);
+      }
+
+      /* --- 5. PRODUCT GRID & CARDS --- */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .product-card {
+        background: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        position: relative;
+        animation: fadeIn 0.6s ease forwards;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      }
+
+      .card-img-wrap {
+        position: relative;
+        height: 280px;
+        overflow: hidden;
+      }
+
+      .card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .product-card:hover .card-img-wrap img {
+        transform: scale(1.1);
+      }
+
+      /* Nhãn AR/Hot */
+      .card-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--text-main);
+        padding: 5px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 4px;
+        text-transform: uppercase;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+      .card-badge.tech {
+        background: #6c5ce7;
+        color: white;
+      }
+      .card-badge.sale {
+        background: #e74c3c;
+        color: white;
+      }
+
+      /* Nút Quick Action khi hover */
+      .quick-actions {
+        position: absolute;
+        bottom: -50px; /* Ẩn đi */
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding-bottom: 20px;
+        transition: var(--transition);
+        z-index: 2;
+      }
+
+      .product-card:hover .quick-actions {
+        bottom: 0;
+      }
+
+      .action-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--white);
+        color: var(--primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: 0.2s;
+      }
+      .action-btn:hover {
+        background: var(--secondary);
+        color: white;
+      }
+
+      .card-info {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .card-category {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--secondary);
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+
+      .card-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .card-desc {
+        font-size: 13px;
+        color: var(--text-sub);
+        margin-bottom: 15px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .card-price {
+        font-family: "Playfair Display", serif;
+        font-size: 20px;
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      /* --- 6. FOOTER --- */
+      footer {
+        background: var(--primary);
+        color: rgba(255, 255, 255, 0.8);
+        padding: 60px 0 20px;
+        text-align: center;
+        margin-top: 80px;
+      }
+
+      .footer-logo {
+        font-size: 32px;
+        color: var(--secondary);
+        margin-bottom: 20px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header {
+          padding: 15px 20px;
+        }
+        .navbar {
+          display: none;
+        } /* Mobile menu (ẩn tạm) */
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+        .filter-tabs {
+          gap: 10px;
+        }
+        .tab-btn {
+          padding: 8px 15px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header" id="mainHeader">
+      <div class="logo serif-font">Về Quán</div>
+      <nav class="navbar">
+        <a href="index.html">Trang Chủ</a>
+        <a href="story.html">Câu Chuyện</a>
+        <a href="menu.html">Menu</a>
+        <a href="handmade.html" class="active">Tiệm Tạp Hóa</a>
+        <a href="contact.html">Liên Hệ</a>
+      </nav>
+      <div class="header-icons">
+        <div class="icon-item"><i class="fas fa-search"></i></div>
+        <div class="icon-item">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="badge">0</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="serif-font">Tiệm Tạp Hóa Ký Ức</h1>
+        <p>Nơi giao thoa giữa nét đẹp thủ công xưa cũ và công nghệ của tương lai.</p>
+      </div>
+    </section>
+
+    <div class="shop-container">
+      <div class="filter-tabs">
+        <button class="tab-btn active" data-filter="all">Tất cả</button>
+        <button class="tab-btn" data-filter="vpp">Văn Phòng Phẩm</button>
+        <button class="tab-btn" data-filter="decor">Decor Indochine</button>
+        <button class="tab-btn" data-filter="gift">Combo Quà Tặng</button>
+        <button class="tab-btn" data-filter="scent">Hương Vị Ký Ức</button>
+      </div>
+
+      <div class="products-grid" id="productGrid">
+        <div class="product-card" data-category="vpp">
+          <div class="card-img-wrap">
+            <span class="card-badge">Best Seller</span>
+            <img
+              src="https://images.unsplash.com/photo-1595053826286-2e5960912c50?auto=format&fit=crop&w=600&q=80"
+              alt="Postcard"
+            />
+            <div class="quick-actions">
+              <div class="action-btn"><i class="far fa-heart"></i></div>
+              <div class="action-btn"><i class="fas fa-cart-plus"></i></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">Văn Phòng Phẩm</div>
+            <h3 class="card-title serif-font">Postcard "Sài Gòn Xưa"</h3>
+            <p class="card-desc">
+              Nét vẽ hiện đại tái hiện lại những trò chơi dân gian và góc phố cũ.
+            </p>
+            <div class="card-price">45.000₫</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="vpp">
+          <div class="card-img-wrap">
+            <span class="card-badge tech"><i class="fas fa-mobile-alt"></i> AR Tech</span>
+            <img
+              src="https://images.unsplash.com/photo-1616606103915-dea7be788566?auto=format&fit=crop&w=600&q=80"
+              alt="Sticker"
+            />
+            <div class="quick-actions">
+              <div class="action-btn"><i class="far fa-heart"></i></div>
+              <div class="action-btn"><i class="fas fa-cart-plus"></i></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">Văn Phòng Phẩm</div>
+            <h3 class="card-title serif-font">Sticker AR "Sống Động"</h3>
+            <p class="card-desc">Quét camera để xem ấm trà bốc khói và quân cờ di chuyển.</p>
+            <div class="card-price">35.000₫</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="vpp">
+          <div class="card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80"
+              alt="Notebook"
+            />
+            <div class="quick-actions">
+              <div class="action-btn"><i class="far fa-heart"></i></div>
+              <div class="action-btn"><i class="fas fa-cart-plus"></i></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">Sổ Tay</div>
+            <h3 class="card-title serif-font">Sổ Tay Gấm "Phượng"</h3>
+            <p class="card-desc">Bìa bọc vải họa tiết chăn con công, dập nổi logo vàng kim.</p>
+            <div class="card-price">120.000₫</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="decor">
+          <div class="card-img-wrap">
+            <span class="card-badge">Mới</span>
+            <img
+              src="https://images.unsplash.com/photo-1602523961358-f9f03dd557db?auto=format&fit=crop&w=600&q=80"
+              alt="Candle"
+            />
+            <div class="quick-actions">
+              <div class="action-btn"><i class="far fa-heart"></i></div>
+              <div class="action-btn"><i class="fas fa-cart-plus"></i></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">Decor Indochine</div>
+            <h3 class="card-title serif-font">Nến Thơm "Mùi Ký Ức"</h3>
+            <p class="card-desc">Hương trà sen và gỗ hoàng đàn trong hũ gốm xanh ngọc lục bảo.</p>
+            <div class="card-price">250.000₫</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="decor">
+          <div class="card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1615486772718-47c0a9058b8f?auto=format&fit=crop&w=600&q=80"
+              alt="Scent Bag"
+            />
+            <div class="quick-actions">
+              <div class="action-btn"><i class="far fa-heart"></i></div>
+              <div class="action-btn"><i class="fas fa-cart-plus"></i></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">Decor Indochine</div>
+            <h3 class="card-title serif-font">Túi Thơm Gạch Bông</h3>
+            <p class="card-desc">Túi vải thêu tay họa tiết gạch bông đặc trưng Sài Gòn xưa.</p>
+            <div class="card-price">85.000₫</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="gift">
+          <div class="card-img-wrap">
+            <span class="card-badge sale">Hot</span>
+            <img
+              src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?auto=format&fit=crop&w=600&q=80"
+              alt="Tea Set"
+            />
+            <div class="quick-actions">
+              <div class="action-btn"><i class="far fa-heart"></i></div>
+              <div class="action-btn"><i class="fas fa-cart-plus"></i></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">Combo Quà Tặng</div>
+            <h3 class="card-title serif-font">Set Trà Sen & Hạt Sen</h3>
+            <p class="card-desc">Đóng gói hộp kraft thắt dây thừng, món quà của sự tinh tế.</p>
+            <div class="card-price">320.000₫</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="gift">
+          <div class="card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=600&q=80"
+              alt="Coffee Set"
+            />
+            <div class="quick-actions">
+              <div class="action-btn"><i class="far fa-heart"></i></div>
+              <div class="action-btn"><i class="fas fa-cart-plus"></i></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">Combo Quà Tặng</div>
+            <h3 class="card-title serif-font">Cà Phê & Phin Đồng</h3>
+            <p class="card-desc">Cà phê đặc sản kèm phin nhôm mạ màu vàng đồng sang trọng.</p>
+            <div class="card-price">180.000₫</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="scent">
+          <div class="card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1608571424266-edeb9bbefdec?auto=format&fit=crop&w=600&q=80"
+              alt="Smudge"
+            />
+            <div class="quick-actions">
+              <div class="action-btn"><i class="far fa-heart"></i></div>
+              <div class="action-btn"><i class="fas fa-cart-plus"></i></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">Hương Vị Ký Ức</div>
+            <h3 class="card-title serif-font">Bó Thảo Mộc Xông Nhà</h3>
+            <p class="card-desc">Kết hợp sả, quế, trầm. Thanh lọc không gian sống của bạn.</p>
+            <div class="card-price">95.000₫</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="scent">
+          <div class="card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1600857062241-98e5dba7f214?auto=format&fit=crop&w=600&q=80"
+              alt="Soap"
+            />
+            <div class="quick-actions">
+              <div class="action-btn"><i class="far fa-heart"></i></div>
+              <div class="action-btn"><i class="fas fa-cart-plus"></i></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">Hương Vị Ký Ức</div>
+            <h3 class="card-title serif-font">Xà Phòng Gạch Bông</h3>
+            <p class="card-desc">Thủ công từ mướp đắng, trà xanh. Khuôn hoa văn cổ điển.</p>
+            <div class="card-price">65.000₫</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo serif-font">Về Quán</div>
+      <p>Kết nối quá khứ - Kiến tạo tương lai</p>
+      <div style="margin-top: 20px; font-size: 20px">
+        <i class="fab fa-facebook" style="margin: 0 10px"></i>
+        <i class="fab fa-instagram" style="margin: 0 10px"></i>
+        <i class="fab fa-tiktok" style="margin: 0 10px"></i>
+      </div>
+      <p style="margin-top: 30px; font-size: 12px; opacity: 0.6">
+        &copy; 2024 Về Quán Concept. All rights reserved.
+      </p>
+    </footer>
+
+    <script>
+      // 1. Xử lý Sticky Header (Đổi màu khi cuộn)
+      const header = document.getElementById("mainHeader");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // 2. Xử lý Filter Tabs (Bộ lọc mượt mà)
+      const tabs = document.querySelectorAll(".tab-btn");
+      const products = document.querySelectorAll(".product-card");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Xóa active cũ, thêm active mới
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          const filterValue = tab.getAttribute("data-filter");
+
+          products.forEach((product) => {
+            const category = product.getAttribute("data-category");
+
+            if (filterValue === "all" || filterValue === category) {
+              // Hiển thị sản phẩm
+              product.style.display = "block";
+              // Thêm timeout nhỏ để chạy animation fade in
+              setTimeout(() => {
+                product.style.opacity = "1";
+                product.style.transform = "translateY(0)";
+              }, 50);
+            } else {
+              // Ẩn sản phẩm
+              product.style.opacity = "0";
+              product.style.transform = "translateY(20px)";
+              // Đợi animation xong mới ẩn hoàn toàn khỏi layout
+              setTimeout(() => {
+                product.style.display = "none";
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // 3. Giỏ hàng giả lập (Interaction)
+      const cartBtns = document.querySelectorAll(".fa-cart-plus");
+      const badge = document.querySelector(".badge");
+      let count = 0;
+
+      cartBtns.forEach((btn) => {
+        btn.parentElement.addEventListener("click", () => {
+          count++;
+          badge.textContent = count;
+          // Hiệu ứng rung nhẹ badge
+          badge.style.transform = "scale(1.5)";
+          setTimeout(() => (badge.style.transform = "scale(1)"), 200);
+        });
+      });
+    </script>
+  </body>
+</html>

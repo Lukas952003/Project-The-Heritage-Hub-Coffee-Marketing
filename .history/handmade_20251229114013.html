@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiệm Tạp Hóa - Về Quán</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. SETUP & VARIABLES --- */
+      :root {
+        --primary: #1a5f48; /* Xanh cổ vịt đậm */
+        --secondary: #d4af37; /* Vàng đồng */
+        --bg-body: #f9f5f0; /* Màu kem giấy cũ */
+        --text-main: #2c2c2c;
+        --white: #ffffff;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        overflow-x: hidden; /* Tránh thanh cuộn ngang */
+      }
+
+      h1,
+      h2,
+      h3,
+      .serif-font {
+        font-family: "Playfair Display", serif;
+      }
+      button {
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      /* --- 2. HEADER (Fixed Nav) --- */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: var(--white);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-decoration: none;
+      }
+
+      .navbar {
+        display: flex;
+        gap: 30px;
+      }
+
+      .navbar a {
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--text-main);
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .navbar a:hover,
+      .navbar a.active {
+        color: var(--primary);
+      }
+      .navbar a.active::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--secondary);
+      }
+
+      .header-icons {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      /* Cart Icon Styles */
+      .cart-btn-wrap {
+        position: relative;
+        cursor: pointer;
+      }
+      .cart-btn-wrap i {
+        font-size: 20px;
+        color: var(--text-main);
+        transition: var(--transition);
+      }
+      .cart-btn-wrap:hover i {
+        color: var(--primary);
+      }
+
+      .badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--secondary);
+        color: var(--white);
+        font-size: 10px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      /* --- 3. HERO BANNER --- */
+      .hero {
+        height: 50vh;
+        background: linear-gradient(rgba(26, 95, 72, 0.7), rgba(26, 95, 72, 0.5)),
+          url("https://images.unsplash.com/photo-1550596334-7bb40a71b6bc?auto=format&fit=crop&w=1920&q=80");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: 60px; /* Bù cho header fixed */
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        color: var(--secondary);
+      }
+
+      /* --- 4. SHOP CONTAINER --- */
+      .shop-container {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+      }
+
+      /* Tabs */
+      .filter-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+      .tab-btn {
+        padding: 8px 20px;
+        background: transparent;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        border-radius: 20px;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+      .tab-btn:hover,
+      .tab-btn.active {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      /* Grid */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 30px;
+      }
+
+      /* Product Card */
+      .product-card {
+        background: var(--white);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card-img {
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+      }
+      .card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+      .product-card:hover .card-img img {
+        transform: scale(1.1);
+      }
+
+      .add-to-cart-btn {
+        position: absolute;
+        bottom: -40px;
+        left: 0;
+        width: 100%;
+        background: var(--secondary);
+        color: var(--white);
+        border: none;
+        padding: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: 0.3s;
+      }
+      .product-card:hover .add-to-cart-btn {
+        bottom: 0;
+      }
+      .add-to-cart-btn:hover {
+        background: var(--primary);
+      }
+
+      .card-info {
+        padding: 15px;
+        text-align: center;
+      }
+      .card-title {
+        font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+      .card-price {
+        color: var(--primary);
+        font-weight: 700;
+        font-family: "Playfair Display", serif;
+        font-size: 18px;
+      }
+
+      /* --- 5. CART SIDEBAR (GIỎ HÀNG) --- */
+      .cart-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+      }
+      .cart-overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 350px;
+        height: 100%;
+        background: var(--white);
+        z-index: 1002;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        flex-direction: column;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      }
+      .cart-sidebar.open {
+        right: 0;
+      }
+
+      .cart-header {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--primary);
+        color: var(--white);
+      }
+      .close-cart {
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+      }
+
+      .cart-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+      }
+      .cart-item img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      .cart-item-info {
+        flex: 1;
+      }
+      .cart-item-title {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .cart-item-price {
+        font-size: 13px;
+        color: var(--primary);
+      }
+      .remove-item {
+        color: #e74c3c;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .cart-footer {
+        padding: 20px;
+        border-top: 1px solid #eee;
+        background: #fafafa;
+      }
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 700;
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+      .checkout-btn {
+        width: 100%;
+        padding: 12px;
+        background: var(--primary);
+        color: var(--white);
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+
+      /* --- RESPONSIVE --- */
+      @media (max-width: 768px) {
+        .cart-sidebar {
+          width: 100%;
+          right: -100%;
+        }
+        .navbar {
+          display: none;
+        } /* Cần thêm JS Hamburger menu cho mobile sau */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="index.html" class="logo serif-font">Về Quán</a>
+
+      <nav class="navbar">
+        <a href="index.html">Trang Chủ</a>
+        <a href="about.html">Về Quán</a>
+        <a href="menu.html">Thực Đơn</a> <a href="handmade.html" class="active">Tiệm Tạp Hóa</a>
+        <a href="games.html">Giải Trí</a>
+        <a href="contact.html">Liên Hệ</a>
+      </nav>
+
+      <div class="header-icons">
+        <div class="cart-btn-wrap" id="cartBtn">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="badge" id="cartCount">0</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1 class="serif-font">Tiệm Tạp Hóa Ký Ức</h1>
+        <p>Những món quà nhỏ mang hồn xưa cũ</p>
+      </div>
+    </section>
+
+    <div class="shop-container">
+      <div class="filter-tabs">
+        <button class="tab-btn active" data-filter="all">Tất cả</button>
+        <button class="tab-btn" data-filter="vpp">Văn Phòng Phẩm</button>
+        <button class="tab-btn" data-filter="decor">Decor Indochine</button>
+        <button class="tab-btn" data-filter="gift">Combo Quà Tặng</button>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card" data-category="vpp">
+          <div class="card-img">
+            <img
+              src="https://images.unsplash.com/photo-1595053826286-2e5960912c50?w=600"
+              alt="Postcard"
+            />
+            <button
+              class="add-to-cart-btn"
+              onclick="addToCart('Postcard Sài Gòn', 45000, 'https://images.unsplash.com/photo-1595053826286-2e5960912c50?w=600')"
+            >
+              Thêm vào giỏ
+            </button>
+          </div>
+          <div class="card-info">
+            <div class="card-title">Postcard Sài Gòn Xưa</div>
+            <div class="card-price">45.000đ</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="vpp">
+          <div class="card-img">
+            <img
+              src="https://images.unsplash.com/photo-1616606103915-dea7be788566?w=600"
+              alt="Sticker AR"
+            />
+            <button
+              class="add-to-cart-btn"
+              onclick="addToCart('Sticker AR Tech', 35000, 'https://images.unsplash.com/photo-1616606103915-dea7be788566?w=600')"
+            >
+              Thêm vào giỏ
+            </button>
+          </div>
+          <div class="card-info">
+            <div class="card-title">Sticker AR "Sống Động"</div>
+            <div class="card-price">35.000đ</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="decor">
+          <div class="card-img">
+            <img
+              src="https://images.unsplash.com/photo-1602523961358-f9f03dd557db?w=600"
+              alt="Nến thơm"
+            />
+            <button
+              class="add-to-cart-btn"
+              onclick="addToCart('Nến Thơm Ký Ức', 250000, 'https://images.unsplash.com/photo-1602523961358-f9f03dd557db?w=600')"
+            >
+              Thêm vào giỏ
+            </button>
+          </div>
+          <div class="card-info">
+            <div class="card-title">Nến Thơm "Mùi Ký Ức"</div>
+            <div class="card-price">250.000đ</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="gift">
+          <div class="card-img">
+            <img
+              src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?w=600"
+              alt="Set Trà"
+            />
+            <button
+              class="add-to-cart-btn"
+              onclick="addToCart('Set Trà Sen', 320000, 'https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?w=600')"
+            >
+              Thêm vào giỏ
+            </button>
+          </div>
+          <div class="card-info">
+            <div class="card-title">Combo Trà Sen & Hạt Sen</div>
+            <div class="card-price">320.000đ</div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="gift">
+          <div class="card-img">
+            <img
+              src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=600"
+              alt="Cà phê"
+            />
+            <button
+              class="add-to-cart-btn"
+              onclick="addToCart('Cà Phê & Phin', 180000, 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=600')"
+            >
+              Thêm vào giỏ
+            </button>
+          </div>
+          <div class="card-info">
+            <div class="card-title">Cà Phê & Phin Vàng Đồng</div>
+            <div class="card-price">180.000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h3>Giỏ Hàng Của Bạn</h3>
+        <span class="close-cart" id="closeCart">&times;</span>
+      </div>
+
+      <div class="cart-items" id="cartItemsContainer">
+        <p style="text-align: center; color: #999; margin-top: 20px">Giỏ hàng đang trống.</p>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Tổng cộng:</span>
+          <span id="cartTotal">0đ</span>
+        </div>
+        <button class="checkout-btn" onclick="alert('Chức năng thanh toán đang phát triển!')">
+          Thanh Toán
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // 1. Dữ liệu Giỏ hàng
+      let cartData = [];
+
+      // Các Element DOM
+      const cartBtn = document.getElementById("cartBtn");
+      const cartSidebar = document.getElementById("cartSidebar");
+      const cartOverlay = document.getElementById("cartOverlay");
+      const closeCart = document.getElementById("closeCart");
+      const cartItemsContainer = document.getElementById("cartItemsContainer");
+      const cartTotalElement = document.getElementById("cartTotal");
+      const cartCountBadge = document.getElementById("cartCount");
+
+      // 2. Hàm mở/đóng giỏ hàng
+      function toggleCart() {
+        cartSidebar.classList.toggle("open");
+        cartOverlay.classList.toggle("open");
+      }
+
+      cartBtn.addEventListener("click", toggleCart);
+      closeCart.addEventListener("click", toggleCart);
+      cartOverlay.addEventListener("click", toggleCart);
+
+      // 3. Hàm Thêm vào giỏ hàng
+      function addToCart(name, price, image) {
+        // Thêm sản phẩm vào mảng dữ liệu
+        cartData.push({ name, price, image });
+
+        // Cập nhật giao diện
+        renderCart();
+
+        // Hiệu ứng mở giỏ hàng ngay để khách thấy
+        if (!cartSidebar.classList.contains("open")) {
+          toggleCart();
+        }
+      }
+
+      // 4. Hàm xóa sản phẩm
+      function removeItem(index) {
+        cartData.splice(index, 1); // Xóa 1 phần tử tại vị trí index
+        renderCart();
+      }
+
+      // 5. Hàm hiển thị (Render) Giỏ hàng
+      function renderCart() {
+        // Cập nhật số lượng trên icon
+        cartCountBadge.textContent = cartData.length;
+
+        // Tính tổng tiền
+        let total = 0;
+        cartItemsContainer.innerHTML = ""; // Xóa nội dung cũ
+
+        if (cartData.length === 0) {
+          cartItemsContainer.innerHTML =
+            '<p style="text-align: center; color: #999; margin-top: 20px;">Giỏ hàng đang trống.</p>';
+          cartTotalElement.textContent = "0đ";
+          return;
+        }
+
+        // Duyệt qua mảng cartData để tạo HTML
+        cartData.forEach((item, index) => {
+          total += item.price;
+
+          const itemHTML = `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toLocaleString(
+                              "vi-VN"
+                            )}đ</div>
+                        </div>
+                        <i class="fas fa-trash remove-item" onclick="removeItem(${index})"></i>
+                    </div>
+                `;
+          cartItemsContainer.innerHTML += itemHTML;
+        });
+
+        // Cập nhật tổng tiền
+        cartTotalElement.textContent = total.toLocaleString("vi-VN") + "đ";
+      }
+
+      // 6. Xử lý Tab lọc sản phẩm (Giữ nguyên logic cũ nhưng gọn hơn)
+      const tabs = document.querySelectorAll(".tab-btn");
+      const products = document.querySelectorAll(".product-card");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          const filter = tab.getAttribute("data-filter");
+          products.forEach((p) => {
+            const category = p.getAttribute("data-category");
+            if (filter === "all" || filter === category) {
+              p.style.display = "block";
+            } else {
+              p.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

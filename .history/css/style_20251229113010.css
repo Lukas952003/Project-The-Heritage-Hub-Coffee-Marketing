@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về Quán - Tiệm Tạp Hóa Ký Ức</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- THIẾT LẬP CHUNG --- */
+        :root {
+            --primary-color: #0f4c3a; /* Xanh ngọc lục bảo đậm - Indochine */
+            --secondary-color: #d4af37; /* Vàng đồng - Sang trọng */
+            --bg-color: #fdfbf7; /* Màu kem giấy - Hoài cổ */
+            --text-dark: #2c2c2c;
+            --text-light: #666;
+            --white: #ffffff;
+            --accent-red: #b93b3b; /* Điểm nhấn nhỏ cho giá tiền/sale */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            background-image: linear-gradient(rgba(15, 76, 58, 0.8), rgba(15, 76, 58, 0.6)), url('https://images.unsplash.com/photo-1520032525096-7bd04a94b5a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 50px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- CATEGORY FILTER --- */
+        .category-nav {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .category-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- PRODUCT SECTIONS --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 15px auto 0;
+        }
+
+        /* --- PRODUCT GRID --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- PRODUCT CARD --- */
+        .product-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .tag-ar { background-color: #6c5ce7; } /* Màu tím công nghệ */
+        .tag-hot { background-color: var(--accent-red); }
+        .tag-eco { background-color: #27ae60; }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-category {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .btn-add {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .btn-add:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-color);
+            color: #ccc;
+            padding: 50px 20px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col p, .footer-col li {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .social-icons a {
+            font-size: 20px;
+            margin-right: 15px;
+            color: var(--white);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 12px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 32px; }
+            .nav-links { display: none; } /* Có thể thêm JS để làm hamburger menu sau */
+            .category-btn { margin-bottom: 10px; width: 45%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Về Quán</div>
+            <nav class="nav-links">
+                <a href="index.html">Trang Chủ</a>
+                <a href="menu.html">Menu</a>
+                <a href="handmade.html" class="active">Tiệm Tạp Hóa</a>
+                <a href="about.html">Câu Chuyện</a>
+                <a href="contact.html">Liên Hệ</a>
+            </nav>
+            <div class="cart-icon" onclick="alert('Giỏ hàng đang được phát triển!')">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count">3</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Tiệm Tạp Hóa Ký Ức</h1>
+            <p>"Nơi những món đồ nhỏ kể lại câu chuyện lớn"</p>
+        </div>
+    </section>
+
+    <nav class="category-nav">
+        <button class="category-btn active" onclick="location.href='#vpp'">Văn Phòng Phẩm</button>
+        <button class="category-btn" onclick="location.href='#decor'">Decor Indochine</button>
+        <button class="category-btn" onclick="location.href='#combo'">Combo Quà Tặng</button>
+        <button class="category-btn" onclick="location.href='#huong'">Hương Vị Ký Ức</button>
+    </nav>
+
+    <div class="container">
+        
+        <div id="vpp" class="section-title">
+            <h2>Văn Phòng Phẩm & Quà Tặng Nghệ Thuật</h2>
+            <p>Dành cho những tâm hồn hoài cổ và yêu công nghệ</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="tag tag-hot">Bán chạy</span>
+                    <img src="https://images.unsplash.com/photo-1595053826286-2e5960912c50?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Postcard Sài Gòn">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Postcard</div>
+                    <h3 class="product-name">Sài Gòn Xưa & Nay</h3>
+                    <p class="product-desc">Bộ thiệp vẽ lại cảnh sinh hoạt dân gian và trò chơi truyền thống bằng nét vẽ hiện đại.</p>
+                    <div class="product-bottom">
+                        <span class="price">45.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="tag tag-ar">Công nghệ AR</span>
+                    <img src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sticker AR">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Sticker AR</div>
+                    <h3 class="product-name">Sticker "Sống Động"</h3>
+                    <p class="product-desc">Hình quân cờ, ấm trà... quét camera sẽ hiện chuyển động và âm thanh vui nhộn.</p>
+                    <div class="product-bottom">
+                        <span class="price">30.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sổ tay vải gấm">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Sổ Tay</div>
+                    <h3 class="product-name">Sổ Tay Gấm "Phượng"</h3>
+                    <p class="product-desc">Bìa bọc vải họa tiết chăn con công/thổ cẩm, logo "Về Quán" dập nổi vàng kim.</p>
+                    <div class="product-bottom">
+                        <span class="price">120.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br><br>
+
+        <div id="decor" class="section-title">
+            <h2>Đồ Trang Trí Phong Cách Indochine</h2>
+            <p>Mang sắc xanh ngọc và sự ấm áp của gỗ về nhà</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1602523961358-f9f03dd557db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Nến thơm">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Nến Thơm</div>
+                    <h3 class="product-name">Nến "Mùi Ký Ức"</h3>
+                    <p class="product-desc">Hương trà sen, gỗ hoàng đàn trong hũ gốm xanh ngọc lục bảo sang trọng.</p>
+                    <div class="product-bottom">
+                        <span class="price">250.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="tag tag-eco">Thủ công</span>
+                    <img src="https://images.unsplash.com/photo-1615486772718-47c0a9058b8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Túi thơm">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Túi Thơm</div>
+                    <h3 class="product-name">Túi Thảo Mộc Thêu Tay</h3>
+                    <p class="product-desc">Túi vải họa tiết gạch bông Sài Gòn, đựng thảo mộc tự nhiên khử mùi.</p>
+                    <div class="product-bottom">
+                        <span class="price">85.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+             <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1610738222955-46f40c749b5c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Lót ly">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Phụ kiện</div>
+                    <h3 class="product-name">Lót Ly Mây Tre Đan</h3>
+                    <p class="product-desc">Khắc tên "Về Quán" và những câu châm ngôn về sự kết nối đầy ý nghĩa.</p>
+                    <div class="product-bottom">
+                        <span class="price">45.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br><br>
+
+        <div id="combo" class="section-title">
+            <h2>Combo Quà Tặng & Hương Vị Ký Ức</h2>
+            <p>Trao gửi yêu thương qua vị giác và khứu giác</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="tag tag-hot">Signature</span>
+                    <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Set Trà">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Combo Quà</div>
+                    <h3 class="product-name">Set Trà Sen & Hạt Sen</h3>
+                    <p class="product-desc">Hộp giấy kraft thắt dây thừng, đính hoa khô. Món quà thanh tao cho người thương.</p>
+                    <div class="product-bottom">
+                        <span class="price">320.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cà phê phin">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Combo Quà</div>
+                    <h3 class="product-name">Cà Phê & Phin Vàng</h3>
+                    <p class="product-desc">Cà phê bột đặc sản kèm phin nhôm mạ màu vàng đồng sang trọng.</p>
+                    <div class="product-bottom">
+                        <span class="price">180.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="tag tag-eco">Thư giãn</span>
+                    <img src="https://images.unsplash.com/photo-1608571424266-edeb9bbefdec?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Smudge Stick">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Xông Nhà</div>
+                    <h3 class="product-name">Bó Thảo Mộc (Smudge Stick)</h3>
+                    <p class="product-desc">Sả, quế, trầm, hoa khô. Đốt để thanh lọc không gian, tìm về an nhiên.</p>
+                    <div class="product-bottom">
+                        <span class="price">95.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1600857062241-98e5dba7f214?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Xà phòng">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Chăm sóc cơ thể</div>
+                    <h3 class="product-name">Xà Phòng Gạch Bông</h3>
+                    <p class="product-desc">Handmade từ mướp đắng, bồ kết, trà xanh. Khuôn hình hoa văn gạch bông xưa.</p>
+                    <div class="product-bottom">
+                        <span class="price">65.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1563911302283-d2bc129e7c1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Hộp trà ống nghiệm">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Thưởng trà</div>
+                    <h3 class="product-name">Hộp Trà "Đàm Đạo"</h3>
+                    <p class="product-desc">3 ống nghiệm trà (Sen, Lài, Ô long) trong hộp gỗ khắc tên quán.</p>
+                    <div class="product-bottom">
+                        <span class="price">150.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1589365278144-830550ca9905?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Móc khóa">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Phụ kiện</div>
+                    <h3 class="product-name">Móc Khóa "Về Quán"</h3>
+                    <p class="product-desc">Gỗ khắc laser hoặc kim loại đồng, kỷ vật nhỏ xinh mang theo bên mình.</p>
+                    <div class="product-bottom">
+                        <span class="price">35.000đ</span>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>VỀ QUÁN</h3>
+                <p>Nơi giao thoa giữa quá khứ huy hoàng và hiện tại năng động. Chúng tôi kể chuyện lịch sử bằng công nghệ.</p>
+            </div>
+            <div class="footer-col">
+                <h3>LIÊN HỆ</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Số 123, Đường Ký Ức, Q.1, TP.HCM</li>
+                    <li><i class="fas fa-phone"></i> 0909 123 456</li>
+                    <li><i class="fas fa-envelope"></i> chao@vequan.vn</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>KẾT NỐI</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Về Quán. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const buttons = document.querySelectorAll('.category-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                buttons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
